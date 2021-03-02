@@ -1,0 +1,48 @@
+{
+  "name": "platform-game",
+  "version": "1.0.0",
+  "main": "index.js",
+  "homepage": "https://github.com/yocosaka/Platform-game#readme",
+  "description": "This game application was built as the JavaScript capstone project at Microverse",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:yocosaka/Platform-game.git"
+  },
+  "keywords": [],
+  "author": "Yoko Saka",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yocosaka/Platform-game/issues"
+  },
+  "scripts": {
+    "stylelint": "stylelint '**/*.scss'",
+    "eslint": "eslint .",
+    "dev": "webpack serve --open",
+    "build": "webpack"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.13",
+    "@babel/plugin-transform-runtime": "^7.12.10",
+    "@babel/preset-env": "^7.12.13",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.2.2",
+    "css-loader": "^5.0.2",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2",
+    "file-loader": "^6.2.0",
+    "jest": "^26.6.3",
+    "style-loader": "^2.0.0",
+    "stylelint": "^13.3.3",
+    "stylelint-config-standard": "^20.0.0",
+    "stylelint-csstree-validator": "^1.9.0",
+    "stylelint-scss": "^3.17.2",
+    "webpack": "^5.0.0-rc.6",
+    "webpack-cli": "^4.5.0",
+    "webpack-dev-server": "^3.11.2"
+  },
+  "dependencies": {
+    "axios": "^0.21.0",
+    "phaser": "^3.50.0"
+  }
+}
