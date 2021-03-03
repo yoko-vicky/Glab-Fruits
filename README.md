@@ -82,3 +82,7 @@ This project is [MIT](./LICENSE) licensed.
 * [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
 * [Img Shields](https://shields.io)
 * [Choose an Open Source License](https://choosealicense.com)
+
+<!-- Illustration by <a href="undefined">Icons 8</a> from <a href="https://icons8.com/">Icons8</a> -->
+<!-- https://www.gameart2d.com/freebies.html -->
+<!-- https://icons8.com/illustrations -->

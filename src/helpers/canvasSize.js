@@ -1,6 +1,6 @@
 const canvasSize = {
-  width: 1334,
-  height: 750,
+  width: 460,
+  height: 500,
 };
 
 export default canvasSize;
