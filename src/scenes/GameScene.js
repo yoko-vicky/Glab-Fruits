@@ -8,6 +8,8 @@ import pineAppleImg from '../assets/pineapple.png';
 import landImg from '../assets/land.png';
 import treeImg from '../assets/tree.png';
 import leafImg from '../assets/leaf.png';
+import spiderImg from '../assets/spider.png';
+import bananaImg from '../assets/banana.png';
 
 class GameScene extends Phaser.Scene {
   constructor() {
@@ -16,11 +18,13 @@ class GameScene extends Phaser.Scene {
 
   preload() {
     this.load.image('fruit1', appleImg);
-    this.load.image('fruit2', poisonAppleImg);
+    this.load.image('fruit2', bananaImg);
     this.load.image('fruit3', pineAppleImg);
     this.load.image('platform', landImg);
     this.load.image('tree', treeImg);
     this.load.image('leaf', leafImg);
+    this.load.image('enemy1', spiderImg);
+    this.load.image('enemy2', poisonAppleImg);
     this.load.spritesheet('codey', playerImg, { frameWidth: 72, frameHeight: 90 });
   }
 
@@ -62,31 +66,56 @@ class GameScene extends Phaser.Scene {
 
     // Fruites
     const fruits = this.physics.add.group();
-    // const fruitList = ['fruit1', 'fruit2', 'fruit3'];
+    const fruitList = ['fruit1', 'fruit2', 'fruit3'];
 
     const fruitGen = () => {
-      const xCoord = Math.random() * 640;
-      // const randomfruit = fruitList[Math.floor(Math.random() * 3)];
-      // fruits.create(xCoord, 10, randomfruit);
-      fruits.create(xCoord, 10, 'fruit1');
+      const xCoord = Math.random() * canvasSize.width;
+      const randomfruit = fruitList[Math.floor(Math.random() * fruitList.length)];
+      fruits.create(xCoord, 10, randomfruit);
     };
 
     const fruitGenLoop = this.time.addEvent({
-      // delay: 100,
-      delay: 300,
+      delay: 500,
       callback: fruitGen,
       callbackScope: this,
       loop: true,
     });
 
+    // enemies
+    const enemies = this.physics.add.group();
+    const enemiesList = ['enemy1'];
+
+    const enemyGen = () => {
+      const xCoord = Math.random() * canvasSize.width;
+      const randomenemy = enemiesList[Math.floor(Math.random() * enemiesList.length)];
+      enemies.create(xCoord, 10, randomenemy);
+    };
+
+    const enemyGenLoop = this.time.addEvent({
+      delay: 800,
+      callback: enemyGen,
+      callbackScope: this,
+      loop: true,
+    });
+
+    // Colliders
     this.physics.add.collider(fruits, platforms, (fruit) => {
       fruit.destroy();
+    });
+
+    this.physics.add.collider(enemies, platforms, (enemy) => {
+      enemy.destroy();
+    });
+
+    // Adds a win condition
+    this.physics.add.overlap(gameState.player, fruits, () => {
       gameState.score += 10;
       gameState.scoreText.setText(`Score: ${gameState.score}`);
     });
 
-    this.physics.add.collider(gameState.player, fruits, () => {
+    this.physics.add.overlap(gameState.player, enemies, () => {
       fruitGenLoop.destroy();
+      enemyGenLoop.destroy();
       this.physics.pause();
       this.anims.pauseAll();
       this.add.text(canvasSize.width * 0.43, canvasSize.height * 0.45, 'Game Over', { fontSize: '15px', fill: '#000000' });
