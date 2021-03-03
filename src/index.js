@@ -2,11 +2,16 @@ import Phaser from 'phaser';
 import './style/style.css';
 import canvasSize from './helpers/canvasSize';
 import StartScene from './scenes/StartScene';
+import PlayerNameScene from './scenes/PlayerNameScene';
 import GameScene from './scenes/GameScene';
 // import { getGameId, setUserScore, getGameResult } from './helpers/request';
 
 const config = {
   type: Phaser.AUTO,
+  parent: 'phaser-example',
+  dom: {
+    createContainer: true,
+  },
   width: canvasSize.width,
   height: canvasSize.height,
   backgroundColor: 'b9eaff',
@@ -18,7 +23,7 @@ const config = {
       // debug: true,
     },
   },
-  scene: [StartScene, GameScene],
+  scene: [StartScene, PlayerNameScene, GameScene],
 };
 
 window.game = new Phaser.Game(config);

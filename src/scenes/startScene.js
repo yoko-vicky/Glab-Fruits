@@ -10,7 +10,7 @@ class StartScene extends Phaser.Scene {
     this.add.text(canvasSize.width * 0.3, canvasSize.height * 0.5, 'Click to start!', { fill: '#000000', fontSize: '20px' });
     this.input.on('pointerdown', () => {
       this.scene.stop('StartScene');
-      this.scene.start('GameScene');
+      this.scene.start('PlayerNameScene');
     });
   }
 }
