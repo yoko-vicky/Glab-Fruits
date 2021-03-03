@@ -25,7 +25,7 @@ class GameScene extends Phaser.Scene {
     this.load.image('leaf', leafImg);
     this.load.image('enemy1', spiderImg);
     this.load.image('enemy2', poisonAppleImg);
-    this.load.spritesheet('codey', playerImg, { frameWidth: 72, frameHeight: 90 });
+    this.load.spritesheet('girl', playerImg, { frameWidth: 72, frameHeight: 90 });
   }
 
   create() {
@@ -34,18 +34,18 @@ class GameScene extends Phaser.Scene {
     this.add.image(canvasSize.width * 0.5, 30, 'leaf');
 
     // player
-    gameState.player = this.physics.add.sprite(canvasSize.width * 0.5, canvasSize.height * 0.8, 'codey').setScale(0.5);
+    gameState.player = this.physics.add.sprite(canvasSize.width * 0.5, canvasSize.height * 0.8, 'girl').setScale(0.5);
 
     this.anims.create({
       key: 'run',
-      frames: this.anims.generateFrameNumbers('codey', { start: 0, end: 3 }),
+      frames: this.anims.generateFrameNumbers('girl', { start: 0, end: 3 }),
       frameRate: 5,
       repeat: -1,
     });
 
     this.anims.create({
       key: 'idle',
-      frames: this.anims.generateFrameNumbers('codey', { start: 4, end: 5 }),
+      frames: this.anims.generateFrameNumbers('girl', { start: 4, end: 5 }),
       frameRate: 5,
       repeat: -1,
     });
