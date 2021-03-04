@@ -1,9 +1,11 @@
 import Phaser from 'phaser';
 import './style/style.css';
 import canvasSize from './helpers/canvasSize';
-import StartScene from './scenes/StartScene';
-import PlayerNameScene from './scenes/PlayerNameScene';
-import GameScene from './scenes/GameScene';
+import Start from './scenes/Start';
+import InputName from './scenes/InputName';
+import Play from './scenes/Play';
+// import GameOver from './scenes/GameOver';
+import Score from './scenes/Score';
 // import { getGameId, setUserScore, getGameResult } from './helpers/request';
 
 const config = {
@@ -23,7 +25,7 @@ const config = {
       // debug: true,
     },
   },
-  scene: [StartScene, PlayerNameScene, GameScene],
+  scene: [Start, InputName, Play, Score],
 };
 
 window.game = new Phaser.Game(config);
