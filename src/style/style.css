@@ -8,13 +8,6 @@ body {
   text-align: center;
 }
 
-h1{
-  font-family: 'Poppins', sans-serif;
-  padding-top: 20px;
-  color: #F36B7F;
-  font-size: 50px;
-}
-
 canvas {
   width: 450px;
   display: block;
