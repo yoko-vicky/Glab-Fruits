@@ -2,7 +2,7 @@ import gameState from './gameState';
 
 const scorePosRateX = () => {
   let result;
-  if (gameState.score === 0) {
+  if (gameState.score < 10) {
     result = 0.46;
   } else if (gameState.score < 100) {
     result = 0.42;

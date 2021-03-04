@@ -34,6 +34,7 @@ class Play extends Phaser.Scene {
 
     // player
     gameState.player = this.physics.add.sprite(gameState.canvasSize.width * 0.5, gameState.canvasSize.height * 0.8, 'girl').setScale(0.5);
+    this.add.existing(gameState.player);
 
     this.anims.create({
       key: 'run',
@@ -45,6 +46,13 @@ class Play extends Phaser.Scene {
     this.anims.create({
       key: 'idle',
       frames: this.anims.generateFrameNumbers('girl', { start: 4, end: 5 }),
+      frameRate: 5,
+      repeat: -1,
+    });
+
+    this.anims.create({
+      key: 'jump',
+      frames: this.anims.generateFrameNumbers('girl', { start: 6, end: 9 }),
       frameRate: 5,
       repeat: -1,
     });
@@ -132,6 +140,10 @@ class Play extends Phaser.Scene {
       gameState.player.setVelocityX(160);
       gameState.player.anims.play('run', true);
       gameState.player.flipX = false;
+    } else if (this.cursors.up.isDown && gameState.player.body.touching.down) {
+      gameState.player.setVelocityY(-80);
+      gameState.player.anims.play('jump', true);
+      gameState.player.flipX = true;
     } else {
       gameState.player.setVelocityX(0);
       gameState.player.anims.play('idle', true);

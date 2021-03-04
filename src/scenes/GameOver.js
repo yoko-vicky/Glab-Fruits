@@ -2,7 +2,7 @@ import Phaser from 'phaser';
 import gameState from '../helpers/gameState';
 import landImg from '../assets/land.png';
 import treeImg from '../assets/tree.png';
-import leafImg from '../assets/leaf.png';
+import leaf2Img from '../assets/leaf-2.png';
 import restartImg from '../assets/restart.png';
 import topImg from '../assets/top.png';
 import scoreImg from '../assets/score.png';
@@ -18,7 +18,7 @@ class GameOver extends Phaser.Scene {
   preload() {
     this.load.image('platform', landImg);
     this.load.image('tree', treeImg);
-    this.load.image('leaf', leafImg);
+    this.load.image('leaf2', leaf2Img);
     this.load.image('restart', restartImg);
     this.load.image('top', topImg);
     this.load.image('score', scoreImg);
@@ -26,9 +26,9 @@ class GameOver extends Phaser.Scene {
   }
 
   create() {
-    setData(gameState.playerName, gameState.score);
+    setData(gameState.player, gameState.score);
     this.add.image(gameState.canvasSize.width * 0.5, gameState.canvasSize.height * 0.5, 'tree');
-    this.add.image(gameState.canvasSize.width * 0.5, 95, 'leaf');
+    this.add.image(gameState.canvasSize.width * 0.5, 95, 'leaf2');
     this.add.image(gameState.canvasSize.width * 0.5, gameState.canvasSize.height * 0.18, 'gameover-title');
 
     this.add.text(gameState.canvasSize.width * scorePosRateX(), gameState.canvasSize.height * 0.3, `${gameState.score}`, { fill: '#FFFFFF', font: '800 68px Roboto' });

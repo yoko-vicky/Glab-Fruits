@@ -32,7 +32,7 @@ class InputName extends Phaser.Scene {
         this.add.text(gameState.canvasSize.width * 0.15, gameState.canvasSize.height * 0.8, 'Name length should be between 3 and 10 letters,', { fill: '#000000', font: '400 14px Roboto' });
         this.add.text(gameState.canvasSize.width * 0.18, gameState.canvasSize.height * 0.85, 'and only alphabet and number can be used.', { fill: '#000000', font: '400 14px Roboto' });
       } else {
-        gameState.playerName = inputName;
+        gameState.player = inputName;
         this.scene.stop('inputName');
         this.scene.start('Play');
       }
