@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
 import './style/style.css';
-import canvasSize from './helpers/canvasSize';
+import gameState from './helpers/gameState';
 import Start from './scenes/Start';
 import InputName from './scenes/InputName';
 import Play from './scenes/Play';
@@ -13,8 +13,8 @@ const config = {
   dom: {
     createContainer: true,
   },
-  width: canvasSize.width,
-  height: canvasSize.height,
+  width: gameState.canvasSize.width,
+  height: gameState.canvasSize.height,
   backgroundColor: 'b9eaff',
   physics: {
     default: 'arcade',

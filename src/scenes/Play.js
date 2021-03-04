@@ -1,5 +1,4 @@
 import Phaser from 'phaser';
-import canvasSize from '../helpers/canvasSize';
 import gameState from '../helpers/gameState';
 import playerImg from '../assets/player.png';
 import appleImg from '../assets/apple.png';
@@ -30,11 +29,11 @@ class Play extends Phaser.Scene {
 
   create() {
     // tree
-    this.add.image(canvasSize.width * 0.5, canvasSize.height * 0.5, 'tree');
-    this.add.image(canvasSize.width * 0.5, 95, 'leaf');
+    this.add.image(gameState.canvasSize.width * 0.5, gameState.canvasSize.height * 0.5, 'tree');
+    this.add.image(gameState.canvasSize.width * 0.5, 95, 'leaf');
 
     // player
-    gameState.player = this.physics.add.sprite(canvasSize.width * 0.5, canvasSize.height * 0.8, 'girl').setScale(0.5);
+    gameState.player = this.physics.add.sprite(gameState.canvasSize.width * 0.5, gameState.canvasSize.height * 0.8, 'girl').setScale(0.5);
 
     this.anims.create({
       key: 'run',
@@ -52,10 +51,10 @@ class Play extends Phaser.Scene {
 
     // platforms
     const platforms = this.physics.add.staticGroup();
-    platforms.create(canvasSize.width * 0.5, canvasSize.height - 12, 'platform').setScale(1.1, 1).refreshBody();
+    platforms.create(gameState.canvasSize.width * 0.5, gameState.canvasSize.height - 12, 'platform').setScale(1.1, 1).refreshBody();
 
     // score
-    this.scoreText = this.add.text(canvasSize.width * 0.41, canvasSize.height - 16, 'Score: 0', { fill: '#FFFFFF', font: '400 15px Roboto' });
+    this.scoreText = this.add.text(gameState.canvasSize.width * 0.41, gameState.canvasSize.height - 16, 'Score: 0', { fill: '#FFFFFF', font: '400 15px Roboto' });
 
     // collider
     gameState.player.setCollideWorldBounds(true);
@@ -69,7 +68,7 @@ class Play extends Phaser.Scene {
     const fruitList = ['fruit1', 'fruit2', 'fruit3'];
 
     const fruitGen = () => {
-      const xCoord = Math.random() * canvasSize.width;
+      const xCoord = Math.random() * gameState.canvasSize.width;
       const randomfruit = fruitList[Math.floor(Math.random() * fruitList.length)];
       fruits.create(xCoord, 10, randomfruit);
     };
@@ -86,7 +85,7 @@ class Play extends Phaser.Scene {
     const enemiesList = ['enemy1'];
 
     const enemyGen = () => {
-      const xCoord = Math.random() * canvasSize.width;
+      const xCoord = Math.random() * gameState.canvasSize.width;
       const randomenemy = enemiesList[Math.floor(Math.random() * enemiesList.length)];
       enemies.create(xCoord, 10, randomenemy);
     };

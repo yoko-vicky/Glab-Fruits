@@ -1,7 +1,5 @@
 import Phaser from 'phaser';
-import canvasSize from '../helpers/canvasSize';
 import gameState from '../helpers/gameState';
-import isNameValid from '../helpers/isNameValid';
 import btnImg from '../assets/go.png';
 
 class InputName extends Phaser.Scene {
@@ -14,9 +12,9 @@ class InputName extends Phaser.Scene {
   }
 
   create() {
-    this.input = this.add.dom(canvasSize.width * 0.25, 300, 'input');
-    this.button = this.add.image(canvasSize.width * 0.5, canvasSize.height * 0.6, 'btn-image');
-    this.text = this.add.text(canvasSize.width * 0.3, canvasSize.height * 0.3, 'Please enter your name', { fill: '#000000', font: '400 15px Roboto' });
+    this.input = this.add.dom(gameState.canvasSize.width * 0.25, 300, 'input');
+    this.button = this.add.image(gameState.canvasSize.width * 0.5, gameState.canvasSize.height * 0.6, 'btn-image');
+    this.text = this.add.text(gameState.canvasSize.width * 0.3, gameState.canvasSize.height * 0.3, 'Please enter your name', { fill: '#000000', font: '400 15px Roboto' });
 
     const myfield = document.querySelector('canvas').previousSibling;
     myfield.removeAttribute('style');
@@ -28,9 +26,11 @@ class InputName extends Phaser.Scene {
 
     this.button.setInteractive().on('pointerup', () => {
       const inputName = myInput.value;
-      if (!isNameValid(inputName)) {
-        this.add.text(canvasSize.width * 0.15, canvasSize.height * 0.8, 'Name length should be between 3 and 10 letters,', { fill: '#000000', font: '400 14px Roboto' });
-        this.add.text(canvasSize.width * 0.18, canvasSize.height * 0.85, 'and only alphabet and number can be used.', { fill: '#000000', font: '400 14px Roboto' });
+      const validResult = inputName.length >= 3 && inputName.length <= 10 && inputName.match(/[a-zA-Z0-9]/g);
+
+      if (!validResult) {
+        this.add.text(gameState.canvasSize.width * 0.15, gameState.canvasSize.height * 0.8, 'Name length should be between 3 and 10 letters,', { fill: '#000000', font: '400 14px Roboto' });
+        this.add.text(gameState.canvasSize.width * 0.18, gameState.canvasSize.height * 0.85, 'and only alphabet and number can be used.', { fill: '#000000', font: '400 14px Roboto' });
       } else {
         gameState.playerName = inputName;
         this.scene.stop('inputName');

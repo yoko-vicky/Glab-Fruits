@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import canvasSize from '../helpers/canvasSize';
+import gameState from '../helpers/gameState';
 import startImg from '../assets/start.png';
 import titleImg from '../assets/title.png';
 import girlImg from '../assets/girl.png';
@@ -16,9 +16,9 @@ class Start extends Phaser.Scene {
   }
 
   create() {
-    this.add.image(canvasSize.width * 0.5, canvasSize.width * 0.3, 'title');
-    this.button = this.add.image(canvasSize.width * 0.5, canvasSize.width * 0.5, 'start');
-    this.add.image(canvasSize.width * 0.5, canvasSize.width * 0.85, 'top-girl');
+    this.add.image(gameState.canvasSize.width * 0.5, gameState.canvasSize.width * 0.3, 'title');
+    this.button = this.add.image(gameState.canvasSize.width * 0.5, gameState.canvasSize.width * 0.5, 'start');
+    this.add.image(gameState.canvasSize.width * 0.5, gameState.canvasSize.width * 0.85, 'top-girl');
     this.button.setInteractive().on('pointerdown', () => {
       this.scene.stop('Start');
       this.scene.start('InputName');

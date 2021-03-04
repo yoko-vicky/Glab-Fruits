@@ -1,5 +1,4 @@
 import Phaser from 'phaser';
-import canvasSize from '../helpers/canvasSize';
 import gameState from '../helpers/gameState';
 import landImg from '../assets/land.png';
 import treeImg from '../assets/tree.png';
@@ -28,15 +27,15 @@ class GameOver extends Phaser.Scene {
 
   create() {
     setData(gameState.playerName, gameState.score);
-    this.add.image(canvasSize.width * 0.5, canvasSize.height * 0.5, 'tree');
-    this.add.image(canvasSize.width * 0.5, 95, 'leaf');
-    this.add.image(canvasSize.width * 0.5, canvasSize.height * 0.18, 'gameover-title');
+    this.add.image(gameState.canvasSize.width * 0.5, gameState.canvasSize.height * 0.5, 'tree');
+    this.add.image(gameState.canvasSize.width * 0.5, 95, 'leaf');
+    this.add.image(gameState.canvasSize.width * 0.5, gameState.canvasSize.height * 0.18, 'gameover-title');
 
-    this.add.text(canvasSize.width * scorePosRateX(), canvasSize.height * 0.3, `${gameState.score}`, { fill: '#FFFFFF', font: '800 68px Roboto' });
+    this.add.text(gameState.canvasSize.width * scorePosRateX(), gameState.canvasSize.height * 0.3, `${gameState.score}`, { fill: '#FFFFFF', font: '800 68px Roboto' });
 
-    this.restart = this.add.image(canvasSize.width * 0.5, canvasSize.height * 0.55, 'restart');
-    this.totop = this.add.image(canvasSize.width * 0.5, canvasSize.height * 0.7, 'top');
-    this.toscore = this.add.image(canvasSize.width * 0.5, canvasSize.height * 0.85, 'score');
+    this.restart = this.add.image(gameState.canvasSize.width * 0.5, gameState.canvasSize.height * 0.55, 'restart');
+    this.totop = this.add.image(gameState.canvasSize.width * 0.5, gameState.canvasSize.height * 0.7, 'top');
+    this.toscore = this.add.image(gameState.canvasSize.width * 0.5, gameState.canvasSize.height * 0.85, 'score');
     this.restart.setInteractive().on('pointerup', () => {
       gameState.score = 0;
       this.scene.stop('GameOver');

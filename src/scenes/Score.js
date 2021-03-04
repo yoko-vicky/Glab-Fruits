@@ -1,5 +1,4 @@
 import Phaser from 'phaser';
-import canvasSize from '../helpers/canvasSize';
 import gameState from '../helpers/gameState';
 import topImg from '../assets/top.png';
 import restartImg from '../assets/restart.png';
@@ -18,18 +17,18 @@ class Score extends Phaser.Scene {
   }
 
   create() {
-    this.add.image(canvasSize.width * 0.5, canvasSize.height * 0.2, 'top-scorers');
+    this.add.image(gameState.canvasSize.width * 0.5, gameState.canvasSize.height * 0.2, 'top-scorers');
     getData().then(data => {
       gameState.topFive = data;
       gameState.topFive.forEach((result, index) => {
-        this.add.text(canvasSize.width * 0.38, canvasSize.height * 0.35 + (index * 30), `${index + 1}. ${result.user} : ${result.score}`, { fill: '#000000', font: '700 18px Roboto' });
+        this.add.text(gameState.canvasSize.width * 0.38, gameState.canvasSize.height * 0.35 + (index * 30), `${index + 1}. ${result.user} : ${result.score}`, { fill: '#000000', font: '700 18px Roboto' });
       });
     }).catch(() => {
-      this.add.text(canvasSize.width * 0.25, canvasSize.height * 0.45, 'Sorry, for some reason, unable to get the score data.', { fill: '#000000' });
+      this.add.text(gameState.canvasSize.width * 0.25, gameState.canvasSize.height * 0.45, 'Sorry, for some reason, unable to get the score data.', { fill: '#000000' });
     });
 
-    this.restart = this.add.image(canvasSize.width * 0.5, canvasSize.height * 0.75, 'restart');
-    this.totop = this.add.image(canvasSize.width * 0.5, canvasSize.height * 0.9, 'top');
+    this.restart = this.add.image(gameState.canvasSize.width * 0.5, gameState.canvasSize.height * 0.75, 'restart');
+    this.totop = this.add.image(gameState.canvasSize.width * 0.5, gameState.canvasSize.height * 0.9, 'top');
 
     this.totop.setInteractive().on('pointerup', () => {
       this.scene.stop('Score');
