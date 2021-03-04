@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
 
 body {
@@ -45,8 +45,10 @@ canvas {
   width: 300px;
   margin: 0 auto 20px;
   padding: 16px;
-  font-size: 17px;
+  font-size: 20px;
   text-align: center;
   transform: none !important;
-  font-family: 'Roboto Slab', serif;
+  font-family: 'Roboto', sans-serif;
+  border: 3px solid #ccc;
+  border-radius: 3px;
 }

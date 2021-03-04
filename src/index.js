@@ -4,9 +4,8 @@ import canvasSize from './helpers/canvasSize';
 import Start from './scenes/Start';
 import InputName from './scenes/InputName';
 import Play from './scenes/Play';
-// import GameOver from './scenes/GameOver';
+import GameOver from './scenes/GameOver';
 import Score from './scenes/Score';
-// import { getGameId, setUserScore, getGameResult } from './helpers/request';
 
 const config = {
   type: Phaser.AUTO,
@@ -25,20 +24,7 @@ const config = {
       // debug: true,
     },
   },
-  scene: [Start, InputName, Play, Score],
+  scene: [Start, InputName, Play, GameOver, Score],
 };
 
 window.game = new Phaser.Game(config);
-
-// Get and Set Test
-// const playGame = async (userName, userScore) => {
-//   const userData = { user: userName, score: userScore };
-//   const id = await getGameId();
-//   const msg = await setUserScore(id, userData);
-//   const result = await getGameResult(id);
-//   console.log(id);
-//   console.log(msg);
-//   console.log(result);
-// };
-
-// playGame('Yoko', 120);

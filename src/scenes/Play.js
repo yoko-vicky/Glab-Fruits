@@ -10,9 +10,6 @@ import treeImg from '../assets/tree.png';
 import leafImg from '../assets/leaf.png';
 import spiderImg from '../assets/spider.png';
 import bananaImg from '../assets/banana.png';
-import restartImg from '../assets/restart.png';
-import topImg from '../assets/top.png';
-import scoreImg from '../assets/score.png';
 
 class Play extends Phaser.Scene {
   constructor() {
@@ -20,24 +17,21 @@ class Play extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image('fruit1', appleImg);
-    this.load.image('fruit2', bananaImg);
-    this.load.image('fruit3', pineAppleImg);
     this.load.image('platform', landImg);
     this.load.image('tree', treeImg);
     this.load.image('leaf', leafImg);
+    this.load.image('fruit1', appleImg);
+    this.load.image('fruit2', bananaImg);
+    this.load.image('fruit3', pineAppleImg);
     this.load.image('enemy1', spiderImg);
     this.load.image('enemy2', poisonAppleImg);
-    this.load.image('restart', restartImg);
-    this.load.image('top', topImg);
-    this.load.image('score', scoreImg);
     this.load.spritesheet('girl', playerImg, { frameWidth: 72, frameHeight: 90 });
   }
 
   create() {
     // tree
     this.add.image(canvasSize.width * 0.5, canvasSize.height * 0.5, 'tree');
-    this.add.image(canvasSize.width * 0.5, 30, 'leaf');
+    this.add.image(canvasSize.width * 0.5, 95, 'leaf');
 
     // player
     gameState.player = this.physics.add.sprite(canvasSize.width * 0.5, canvasSize.height * 0.8, 'girl').setScale(0.5);
@@ -58,17 +52,17 @@ class Play extends Phaser.Scene {
 
     // platforms
     const platforms = this.physics.add.staticGroup();
-    platforms.create(canvasSize.width * 0.5, canvasSize.height - 12, 'platform').setScale(1, 0.3).refreshBody();
+    platforms.create(canvasSize.width * 0.5, canvasSize.height - 12, 'platform').setScale(1.1, 1).refreshBody();
 
     // score
-    gameState.scoreText = this.add.text(canvasSize.width * 0.41, canvasSize.height - 13, 'Score: 0', { fontSize: '15px', fill: '#FFFFFF' });
+    this.scoreText = this.add.text(canvasSize.width * 0.41, canvasSize.height - 16, 'Score: 0', { fill: '#FFFFFF', font: '400 15px Roboto' });
 
     // collider
     gameState.player.setCollideWorldBounds(true);
     this.physics.add.collider(gameState.player, platforms);
 
     // cursor
-    gameState.cursors = this.input.keyboard.createCursorKeys();
+    this.cursors = this.input.keyboard.createCursorKeys();
 
     // Fruites
     const fruits = this.physics.add.group();
@@ -116,7 +110,7 @@ class Play extends Phaser.Scene {
     // Adds a win condition
     this.physics.add.overlap(gameState.player, fruits, () => {
       gameState.score += 10;
-      gameState.scoreText.setText(`Score: ${gameState.score}`);
+      this.scoreText.setText(`Score: ${gameState.score}`);
     });
 
     // Move to gameover scean
@@ -125,34 +119,17 @@ class Play extends Phaser.Scene {
       enemyGenLoop.destroy();
       this.physics.pause();
       this.anims.pauseAll();
-      this.add.text(canvasSize.width * 0.43, canvasSize.height * 0.45, 'Game Over', { fontSize: '15px', fill: '#000000' });
-      this.restart = this.add.image(canvasSize.width * 0.5, canvasSize.height * 0.35, 'restart');
-      this.totop = this.add.image(canvasSize.width * 0.5, canvasSize.height * 0.5, 'top');
-      this.toscore = this.add.image(canvasSize.width * 0.5, canvasSize.height * 0.65, 'score');
-      this.restart.setInteractive().on('pointerup', () => {
-        gameState.score = 0;
-        this.scene.restart();
-      });
-      this.totop.setInteractive().on('pointerup', () => {
-        gameState.score = 0;
-        this.scene.stop('Play');
-        this.scene.start('Start');
-      });
-      this.toscore.setInteractive().on('pointerup', () => {
-        gameState.score = 0;
-        this.scene.stop('Play');
-        this.scene.start('Score');
-      });
+      this.scene.stop('Play');
+      this.scene.start('GameOver');
     });
   }
 
-  // eslint-disable-next-line class-methods-use-this
   update() {
-    if (gameState.cursors.left.isDown) {
+    if (this.cursors.left.isDown) {
       gameState.player.setVelocityX(-160);
       gameState.player.anims.play('run', true);
       gameState.player.flipX = true;
-    } else if (gameState.cursors.right.isDown) {
+    } else if (this.cursors.right.isDown) {
       gameState.player.setVelocityX(160);
       gameState.player.anims.play('run', true);
       gameState.player.flipX = false;
