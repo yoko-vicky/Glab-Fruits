@@ -14,7 +14,7 @@ class InputName extends Phaser.Scene {
   create() {
     this.input = this.add.dom(gameState.canvasSize.width * 0.25, 300, 'input');
     this.button = this.add.image(gameState.canvasSize.width * 0.5, gameState.canvasSize.height * 0.6, 'btn-image');
-    this.text = this.add.text(gameState.canvasSize.width * 0.3, gameState.canvasSize.height * 0.3, 'Please enter your name', { fill: '#000000', font: '400 15px Roboto' });
+    this.text = this.add.text(gameState.canvasSize.width * 0.3, gameState.canvasSize.height * 0.3, 'Please enter your name', { fill: '#000000', font: '400 17px Roboto' });
 
     const myfield = document.querySelector('canvas').previousSibling;
     myfield.removeAttribute('style');
