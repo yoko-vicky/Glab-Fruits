@@ -49,73 +49,73 @@ class Play extends Phaser.Scene {
       repeat: -1,
     });
 
-    // platforms
-    const platforms = this.physics.add.staticGroup();
-    platforms.create(gameState.canvasSize.width * 0.5, gameState.canvasSize.height - 12, 'platform').setScale(1.1, 1).refreshBody();
+    // land
+    this.land = this.physics.add.staticGroup();
+    this.land.create(gameState.canvasSize.width * 0.5, gameState.canvasSize.height - 12, 'platform').setScale(1.1, 1).refreshBody();
 
     // score
     this.scoreText = this.add.text(gameState.canvasSize.width * 0.41, gameState.canvasSize.height - 16, 'Score: 0', { fill: '#FFFFFF', font: '400 15px Roboto' });
 
     // collider
     gameState.player.setCollideWorldBounds(true);
-    this.physics.add.collider(gameState.player, platforms);
+    this.physics.add.collider(gameState.player, this.land);
 
     // cursor
     this.cursors = this.input.keyboard.createCursorKeys();
 
     // Fruites
-    const fruits = this.physics.add.group();
-    const fruitList = ['fruit1', 'fruit2', 'fruit3'];
+    this.fruits = this.physics.add.group();
+    this.fruitList = ['fruit1', 'fruit2', 'fruit3'];
 
-    const fruitGen = () => {
+    this.fruitGen = () => {
       const xCoord = Math.random() * gameState.canvasSize.width;
-      const randomfruit = fruitList[Math.floor(Math.random() * fruitList.length)];
-      fruits.create(xCoord, 10, randomfruit);
+      const randomfruit = this.fruitList[Math.floor(Math.random() * this.fruitList.length)];
+      this.fruits.create(xCoord, 10, randomfruit);
     };
 
-    const fruitGenLoop = this.time.addEvent({
+    this.fruitGenLoop = this.time.addEvent({
       delay: 500,
-      callback: fruitGen,
+      callback: this.fruitGen,
       callbackScope: this,
       loop: true,
     });
 
     // enemies
-    const enemies = this.physics.add.group();
-    const enemiesList = ['enemy1'];
+    this.enemies = this.physics.add.group();
+    this.enemiesList = ['enemy1'];
 
-    const enemyGen = () => {
+    this.enemyGen = () => {
       const xCoord = Math.random() * gameState.canvasSize.width;
-      const randomenemy = enemiesList[Math.floor(Math.random() * enemiesList.length)];
-      enemies.create(xCoord, 10, randomenemy);
+      const randomenemy = this.enemiesList[Math.floor(Math.random() * this.enemiesList.length)];
+      this.enemies.create(xCoord, 10, randomenemy);
     };
 
-    const enemyGenLoop = this.time.addEvent({
+    this.enemyGenLoop = this.time.addEvent({
       delay: 800,
-      callback: enemyGen,
+      callback: this.enemyGen,
       callbackScope: this,
       loop: true,
     });
 
     // Colliders
-    this.physics.add.collider(fruits, platforms, (fruit) => {
+    this.physics.add.collider(this.fruits, this.land, (fruit) => {
       fruit.destroy();
     });
 
-    this.physics.add.collider(enemies, platforms, (enemy) => {
+    this.physics.add.collider(this.enemies, this.land, (enemy) => {
       enemy.destroy();
     });
 
     // Adds a win condition
-    this.physics.add.overlap(gameState.player, fruits, () => {
-      gameState.score += 10;
+    this.physics.add.overlap(this.fruits, gameState.player, () => {
+      gameState.score += 1;
       this.scoreText.setText(`Score: ${gameState.score}`);
     });
 
     // Move to gameover scean
-    this.physics.add.overlap(gameState.player, enemies, () => {
-      fruitGenLoop.destroy();
-      enemyGenLoop.destroy();
+    this.physics.add.overlap(this.enemies, gameState.player, () => {
+      this.fruitGenLoop.destroy();
+      this.enemyGenLoop.destroy();
       this.physics.pause();
       this.anims.pauseAll();
       this.scene.stop('Play');
