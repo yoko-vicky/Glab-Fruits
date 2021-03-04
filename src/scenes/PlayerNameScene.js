@@ -1,41 +1,43 @@
 import Phaser from 'phaser';
-// import canvasSize from '../helpers/canvasSize';
+import canvasSize from '../helpers/canvasSize';
 import gameState from '../helpers/gameState';
 import isNameValid from '../helpers/isNameValid';
+import btnImg from '../assets/start.png';
 
 class PlayerNameScene extends Phaser.Scene {
   constructor() {
     super({ key: 'PlayerNameScene' });
   }
 
+  preload() {
+    this.load.image('btn-image', btnImg);
+  }
+
   create() {
-    this.input = this.add.dom(100, 150, 'input', 'background-color: white; width: 220px; height: 50px; font: 22px Arial');
-    this.button = this.add.dom(100, 200, 'button', 'background-color: orange; width: 120px; height: 50px; font: 22px Arial', 'submit');
-    this.text = this.add.text(120, 230, 'Please enter your name:', { fontSize: '15px', fill: '#ffffff' });
+    this.input = this.add.dom(canvasSize.width * 0.25, 300, 'input');
+    this.button = this.add.image(canvasSize.width * 0.5, canvasSize.height * 0.7, 'btn-image');
+    this.text = this.add.text(canvasSize.width * 0.3, canvasSize.height * 0.4, 'Please enter your name', { fontSize: '15px', fill: '#000000' });
 
     const myfield = document.querySelector('canvas').previousSibling;
-    myfield.setAttribute('id', 'my-field');
     myfield.removeAttribute('style');
+    myfield.setAttribute('id', 'my-field');
 
     const myInput = myfield.querySelector('input');
     myInput.setAttribute('id', 'my-input');
     myInput.removeAttribute('style');
 
-    const myBtn = myfield.querySelector('button');
-    myBtn.setAttribute('id', 'my-button');
-    myBtn.removeAttribute('style');
-
-    myBtn.onclick = () => {
+    this.button.setInteractive().on('pointerup', () => {
       const inputName = myInput.value;
-      console.log(inputName);
+      // console.log(inputName);
+
       if (!isNameValid(inputName)) {
-        this.add.text(220, 450, 'Name length should be between 3 and 10 characters long, and only alphabet and number can be used.', { fontSize: '16px', fill: '#000000' });
+        this.add.text(canvasSize.width * 0.08, canvasSize.height * 0.8, 'Name length should be between 3 and 10 letters', { fontSize: '14px', fill: '#000000' });
+        this.add.text(canvasSize.width * 0.1, canvasSize.height * 0.85, ', and only alphabet and number can be used.', { fontSize: '14px', fill: '#000000' });
       } else {
         gameState.playerName = inputName;
-        // this.scene.stop('PlayerNameScene');
         this.scene.start('GameScene');
       }
-    };
+    });
   }
 }
 

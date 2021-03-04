@@ -10,6 +10,9 @@ import treeImg from '../assets/tree.png';
 import leafImg from '../assets/leaf.png';
 import spiderImg from '../assets/spider.png';
 import bananaImg from '../assets/banana.png';
+import restartImg from '../assets/restart.png';
+import topImg from '../assets/top.png';
+import scoreImg from '../assets/score.png';
 
 class GameScene extends Phaser.Scene {
   constructor() {
@@ -25,6 +28,9 @@ class GameScene extends Phaser.Scene {
     this.load.image('leaf', leafImg);
     this.load.image('enemy1', spiderImg);
     this.load.image('enemy2', poisonAppleImg);
+    this.load.image('restart', restartImg);
+    this.load.image('top', topImg);
+    this.load.image('score', scoreImg);
     this.load.spritesheet('girl', playerImg, { frameWidth: 72, frameHeight: 90 });
   }
 
@@ -55,7 +61,7 @@ class GameScene extends Phaser.Scene {
     platforms.create(canvasSize.width * 0.5, canvasSize.height - 12, 'platform').setScale(1, 0.3).refreshBody();
 
     // score
-    gameState.scoreText = this.add.text(canvasSize.width * 0.45, canvasSize.height - 13, 'Score: 0', { fontSize: '15px', fill: '#FFFFFF' });
+    gameState.scoreText = this.add.text(canvasSize.width * 0.41, canvasSize.height - 13, 'Score: 0', { fontSize: '15px', fill: '#FFFFFF' });
 
     // collider
     gameState.player.setCollideWorldBounds(true);
@@ -119,12 +125,21 @@ class GameScene extends Phaser.Scene {
       this.physics.pause();
       this.anims.pauseAll();
       this.add.text(canvasSize.width * 0.43, canvasSize.height * 0.45, 'Game Over', { fontSize: '15px', fill: '#000000' });
-      this.add.text(canvasSize.width * 0.38, canvasSize.height * 0.5, 'Click to Restart', { fontSize: '15px', fill: '#000000' });
-
-      this.input.on('pointerup', () => {
+      this.restart = this.add.image(canvasSize.width * 0.5, canvasSize.height * 0.35, 'restart');
+      this.totop = this.add.image(canvasSize.width * 0.5, canvasSize.height * 0.5, 'top');
+      this.toscore = this.add.image(canvasSize.width * 0.5, canvasSize.height * 0.65, 'score');
+      this.restart.setInteractive().on('pointerup', () => {
         gameState.score = 0;
         this.scene.restart();
-      });
+      }, this);
+      this.totop.setInteractive().on('pointerup', () => {
+        gameState.score = 0;
+        this.scene.start('StartScene');
+      }, this);
+      this.toscore.setInteractive().on('pointerup', () => {
+        gameState.score = 0;
+        this.scene.start('StartScene');
+      }, this);
     });
   }
 
