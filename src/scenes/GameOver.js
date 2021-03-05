@@ -1,6 +1,5 @@
 import Phaser from 'phaser';
 import gameState from '../helpers/gameState';
-import leaf2Img from '../assets/images/leaf-2.png';
 import restartImg from '../assets/images/restart.png';
 import topImg from '../assets/images/top.png';
 import scoreImg from '../assets/images/score.png';
@@ -15,7 +14,6 @@ class GameOver extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image('leaf2', leaf2Img);
     this.load.image('restart', restartImg);
     this.load.image('top', topImg);
     this.load.image('score', scoreImg);
@@ -24,22 +22,16 @@ class GameOver extends Phaser.Scene {
   }
 
   create() {
-    this.clickSound = this.sound.add('click-sound');
-    this.clickGoSound = this.sound.add('click-go-sound');
-    this.gameOverMusic = this.sound.add('gameover-music');
-    this.gameOverMusic.loop = true;
-    this.gameOverMusic.play();
-
     setData(gameState.player, gameState.score);
-    this.add.image(gameState.canvasSize.width * 0.5, gameState.canvasSize.height * 0.5, 'tree');
-    this.add.image(gameState.canvasSize.width * 0.5, 95, 'leaf2');
-    this.add.image(gameState.canvasSize.width * 0.5, gameState.canvasSize.height * 0.18, 'gameover-title');
+    this.add.image(gameState.canvas.width * 0.5, gameState.canvas.height * 0.5, 'tree');
+    this.add.image(gameState.canvas.width * 0.5, 95, 'leaf');
+    this.add.image(gameState.canvas.width * 0.5, gameState.canvas.height * 0.18, 'gameover-title');
 
-    this.add.text(gameState.canvasSize.width * scorePosRateX(), gameState.canvasSize.height * 0.3, `${gameState.score}`, { fill: '#FFFFFF', font: '800 68px Roboto' });
+    this.add.text(gameState.canvas.width * scorePosRateX(), gameState.canvas.height * 0.3, `${gameState.score}`, { fill: '#FFFFFF', font: '800 68px Roboto' });
 
-    this.restart = this.add.image(gameState.canvasSize.width * 0.5, gameState.canvasSize.height * 0.55, 'restart');
-    this.totop = this.add.image(gameState.canvasSize.width * 0.5, gameState.canvasSize.height * 0.7, 'top');
-    this.toscore = this.add.image(gameState.canvasSize.width * 0.5, gameState.canvasSize.height * 0.85, 'score');
+    this.restart = this.add.image(gameState.canvas.width * 0.5, gameState.canvas.height * 0.55, 'restart');
+    this.totop = this.add.image(gameState.canvas.width * 0.5, gameState.canvas.height * 0.7, 'top');
+    this.toscore = this.add.image(gameState.canvas.width * 0.5, gameState.canvas.height * 0.85, 'score');
     this.restart.setInteractive().on('pointerup', () => {
       gameState.score = 0;
       this.scene.stop('GameOver');
@@ -61,6 +53,12 @@ class GameOver extends Phaser.Scene {
       this.clickSound.play();
       this.scene.start('Score');
     });
+
+    this.clickSound = this.sound.add('click-sound');
+    this.clickGoSound = this.sound.add('click-go-sound');
+    this.gameOverMusic = this.sound.add('gameover-music');
+    this.gameOverMusic.loop = true;
+    this.gameOverMusic.play();
   }
 }
 

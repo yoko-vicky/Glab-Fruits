@@ -21,9 +21,9 @@ class InputName extends Phaser.Scene {
     this.openingMusic.play();
     this.clickSound = this.sound.add('click-sound');
 
-    this.input = this.add.dom(gameState.canvasSize.width * 0.25, 300, 'input');
-    this.button = this.add.image(gameState.canvasSize.width * 0.5, gameState.canvasSize.height * 0.6, 'btn-image');
-    this.text = this.add.text(gameState.canvasSize.width * 0.3, gameState.canvasSize.height * 0.3, 'Please enter your name', { fill: '#000000', font: '400 17px Roboto' });
+    this.input = this.add.dom(gameState.canvas.width * 0.25, 300, 'input');
+    this.button = this.add.image(gameState.canvas.width * 0.5, gameState.canvas.height * 0.6, 'btn-image');
+    this.text = this.add.text(gameState.canvas.width * 0.3, gameState.canvas.height * 0.3, 'Please enter your name', { fill: '#000000', font: '400 17px Roboto' });
 
     const myfield = document.querySelector('canvas').previousSibling;
     myfield.removeAttribute('style');
@@ -39,8 +39,8 @@ class InputName extends Phaser.Scene {
       const validResult = inputName.length >= 3 && inputName.length <= 10 && inputName.match(/[a-zA-Z0-9]/g);
 
       if (!validResult) {
-        this.add.text(gameState.canvasSize.width * 0.15, gameState.canvasSize.height * 0.8, 'Name length should be between 3 and 10 letters,', { fill: '#000000', font: '400 14px Roboto' });
-        this.add.text(gameState.canvasSize.width * 0.18, gameState.canvasSize.height * 0.85, 'and only alphabet and number can be used.', { fill: '#000000', font: '400 14px Roboto' });
+        this.add.text(gameState.canvas.width * 0.15, gameState.canvas.height * 0.8, 'Name length should be between 3 and 10 letters,', { fill: '#000000', font: '400 14px Roboto' });
+        this.add.text(gameState.canvas.width * 0.18, gameState.canvas.height * 0.85, 'and only alphabet and number can be used.', { fill: '#000000', font: '400 14px Roboto' });
       } else {
         gameState.player = inputName;
         this.scene.stop('inputName');

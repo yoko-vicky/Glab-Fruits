@@ -19,9 +19,9 @@ class Start extends Phaser.Scene {
 
   create() {
     this.clickGoSound = this.sound.add('click-go-sound');
-    this.add.image(gameState.canvasSize.width * 0.5, gameState.canvasSize.width * 0.3, 'title');
-    this.button = this.add.image(gameState.canvasSize.width * 0.5, gameState.canvasSize.width * 0.5, 'start');
-    this.add.image(gameState.canvasSize.width * 0.5, gameState.canvasSize.width * 0.85, 'top-girl');
+    this.add.image(gameState.canvas.width * 0.5, gameState.canvas.width * 0.3, 'title');
+    this.button = this.add.image(gameState.canvas.width * 0.5, gameState.canvas.width * 0.5, 'start');
+    this.add.image(gameState.canvas.width * 0.5, gameState.canvas.width * 0.85, 'top-girl');
     this.button.setInteractive().on('pointerdown', () => {
       this.clickGoSound.play();
       this.scene.stop('Start');

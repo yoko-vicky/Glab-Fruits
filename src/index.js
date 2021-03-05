@@ -13,13 +13,13 @@ const config = {
   dom: {
     createContainer: true,
   },
-  width: gameState.canvasSize.width,
-  height: gameState.canvasSize.height,
+  width: gameState.canvas.width,
+  height: gameState.canvas.height,
   backgroundColor: 'b9eaff',
   physics: {
     default: 'arcade',
     arcade: {
-      gravity: { y: 150 },
+      gravity: { y: 400 },
       enableBody: true,
       // debug: true,
     },
