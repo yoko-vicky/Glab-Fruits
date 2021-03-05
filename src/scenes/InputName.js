@@ -1,6 +1,8 @@
 import Phaser from 'phaser';
 import gameState from '../helpers/gameState';
 import btnImg from '../assets/go.png';
+import openingMusic from '../assets/game3.mp3';
+import clickSound from '../assets/click1.wav';
 
 class InputName extends Phaser.Scene {
   constructor() {
@@ -9,9 +11,16 @@ class InputName extends Phaser.Scene {
 
   preload() {
     this.load.image('btn-image', btnImg);
+    this.load.audio('opening-music', openingMusic);
+    this.load.audio('click-sound', clickSound);
   }
 
   create() {
+    this.openingMusic = this.sound.add('opening-music');
+    this.openingMusic.loop = true;
+    this.openingMusic.play();
+    this.clickSound = this.sound.add('click-sound');
+
     this.input = this.add.dom(gameState.canvasSize.width * 0.25, 300, 'input');
     this.button = this.add.image(gameState.canvasSize.width * 0.5, gameState.canvasSize.height * 0.6, 'btn-image');
     this.text = this.add.text(gameState.canvasSize.width * 0.3, gameState.canvasSize.height * 0.3, 'Please enter your name', { fill: '#000000', font: '400 17px Roboto' });
@@ -25,6 +34,7 @@ class InputName extends Phaser.Scene {
     myInput.removeAttribute('style');
 
     this.button.setInteractive().on('pointerup', () => {
+      this.clickSound.play();
       const inputName = myInput.value;
       const validResult = inputName.length >= 3 && inputName.length <= 10 && inputName.match(/[a-zA-Z0-9]/g);
 
@@ -34,6 +44,7 @@ class InputName extends Phaser.Scene {
       } else {
         gameState.player = inputName;
         this.scene.stop('inputName');
+        this.openingMusic.stop();
         this.scene.start('Play');
       }
     });

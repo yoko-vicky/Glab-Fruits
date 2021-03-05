@@ -9,6 +9,9 @@ import scoreImg from '../assets/score.png';
 import gameOverTitle from '../assets/gameover.png';
 import setData from '../helpers/setData';
 import scorePosRateX from '../helpers/scorePosRateX';
+import gameOverMusic from '../assets/game2.mp3';
+// import clickSound from '../assets/click1.wav';
+// import clickGoSound from '../assets/click2.wav';
 
 class GameOver extends Phaser.Scene {
   constructor() {
@@ -23,9 +26,16 @@ class GameOver extends Phaser.Scene {
     this.load.image('top', topImg);
     this.load.image('score', scoreImg);
     this.load.image('gameover-title', gameOverTitle);
+    this.load.audio('gameover-music', gameOverMusic);
   }
 
   create() {
+    this.clickSound = this.sound.add('click-sound');
+    this.clickGoSound = this.sound.add('click-go-sound');
+    this.gameOverMusic = this.sound.add('gameover-music');
+    this.gameOverMusic.loop = true;
+    this.gameOverMusic.play();
+
     setData(gameState.player, gameState.score);
     this.add.image(gameState.canvasSize.width * 0.5, gameState.canvasSize.height * 0.5, 'tree');
     this.add.image(gameState.canvasSize.width * 0.5, 95, 'leaf2');
@@ -39,16 +49,22 @@ class GameOver extends Phaser.Scene {
     this.restart.setInteractive().on('pointerup', () => {
       gameState.score = 0;
       this.scene.stop('GameOver');
+      this.gameOverMusic.stop();
+      this.clickGoSound.play();
       this.scene.start('Play');
     });
     this.totop.setInteractive().on('pointerup', () => {
       gameState.score = 0;
       this.scene.stop('GameOver');
+      this.gameOverMusic.stop();
+      this.clickSound.play();
       this.scene.start('Start');
     });
     this.toscore.setInteractive().on('pointerup', () => {
       gameState.score = 0;
       this.scene.stop('GameOver');
+      this.gameOverMusic.stop();
+      this.clickSound.play();
       this.scene.start('Score');
     });
   }

@@ -9,6 +9,8 @@ import treeImg from '../assets/tree.png';
 import leafImg from '../assets/leaf.png';
 import spiderImg from '../assets/spider.png';
 import bananaImg from '../assets/banana.png';
+import playMusic from '../assets/game1.mp3';
+import ouchSound from '../assets/ouch.wav';
 
 class Play extends Phaser.Scene {
   constructor() {
@@ -24,10 +26,18 @@ class Play extends Phaser.Scene {
     this.load.image('fruit3', pineAppleImg);
     this.load.image('enemy1', spiderImg);
     this.load.image('enemy2', poisonAppleImg);
+    this.load.audio('play-music', playMusic);
+    this.load.audio('ouch-sound', ouchSound);
+    this.load.audio('play-music', playMusic);
     this.load.spritesheet('girl', playerImg, { frameWidth: 72, frameHeight: 90 });
   }
 
   create() {
+    this.ouchSound = this.sound.add('ouch-sound');
+    this.playMusic = this.sound.add('play-music');
+    this.playMusic.loop = true;
+    this.playMusic.play();
+
     // tree
     this.add.image(gameState.canvasSize.width * 0.5, gameState.canvasSize.height * 0.5, 'tree');
     this.add.image(gameState.canvasSize.width * 0.5, 95, 'leaf');
@@ -106,29 +116,13 @@ class Play extends Phaser.Scene {
     });
 
     // Colliders
-    this.physics.add.collider(this.fruits, this.land, (fruit) => {
-      fruit.destroy();
-    });
-
-    this.physics.add.collider(this.enemies, this.land, (enemy) => {
-      enemy.destroy();
-    });
+    this.physics.add.collider(this.fruits, this.land, (fruit) => { fruit.destroy(); });
+    this.physics.add.collider(this.enemies, this.land, (enemy) => { enemy.destroy(); });
 
     // Adds a win condition
-    this.physics.add.overlap(this.fruits, gameState.player, () => {
-      gameState.score += 1;
-      this.scoreText.setText(`Score: ${gameState.score}`);
-    });
-
+    this.physics.add.overlap(this.fruits, gameState.player, this.getFruits, null, this);
     // Move to gameover scean
-    this.physics.add.overlap(this.enemies, gameState.player, () => {
-      this.fruitGenLoop.destroy();
-      this.enemyGenLoop.destroy();
-      this.physics.pause();
-      this.anims.pauseAll();
-      this.scene.stop('Play');
-      this.scene.start('GameOver');
-    });
+    this.physics.add.overlap(this.enemies, gameState.player, this.changeToGameOver, null, this);
   }
 
   update() {
@@ -148,6 +142,22 @@ class Play extends Phaser.Scene {
       gameState.player.setVelocityX(0);
       gameState.player.anims.play('idle', true);
     }
+  }
+
+  getFruits() {
+    gameState.score += 3;
+    this.scoreText.setText(`Score: ${gameState.score}`);
+  }
+
+  changeToGameOver() {
+    this.ouchSound.play();
+    this.fruitGenLoop.destroy();
+    this.enemyGenLoop.destroy();
+    this.physics.pause();
+    this.anims.pauseAll();
+    this.scene.stop('Play');
+    this.playMusic.stop();
+    this.scene.start('GameOver');
   }
 }
 

@@ -86,3 +86,6 @@ This project is [MIT](./LICENSE) licensed.
 <!-- Illustration by <a href="undefined">Icons 8</a> from <a href="https://icons8.com/">Icons8</a> -->
 <!-- https://www.gameart2d.com/freebies.html -->
 <!-- https://icons8.com/illustrations -->
+<!-- https://mixkit.co/free-sound-effects/game/ -->
+<!-- https://www.youtube.com/audiolibrary -->
+<!-- https://www.zapsplat.com/sound-effect-category/game-sounds/ -->
