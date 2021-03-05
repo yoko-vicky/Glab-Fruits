@@ -11,6 +11,7 @@ import spiderImg from '../assets/spider.png';
 import bananaImg from '../assets/banana.png';
 import playMusic from '../assets/game1.mp3';
 import ouchSound from '../assets/ouch.wav';
+import getSound from '../assets/get.wav';
 
 class Play extends Phaser.Scene {
   constructor() {
@@ -28,12 +29,14 @@ class Play extends Phaser.Scene {
     this.load.image('enemy2', poisonAppleImg);
     this.load.audio('play-music', playMusic);
     this.load.audio('ouch-sound', ouchSound);
+    this.load.audio('get-sound', getSound);
     this.load.audio('play-music', playMusic);
     this.load.spritesheet('girl', playerImg, { frameWidth: 72, frameHeight: 90 });
   }
 
   create() {
     this.ouchSound = this.sound.add('ouch-sound');
+    this.getSound = this.sound.add('get-sound');
     this.playMusic = this.sound.add('play-music');
     this.playMusic.loop = true;
     this.playMusic.play();
@@ -120,7 +123,7 @@ class Play extends Phaser.Scene {
     this.physics.add.collider(this.enemies, this.land, (enemy) => { enemy.destroy(); });
 
     // Adds a win condition
-    this.physics.add.overlap(this.fruits, gameState.player, this.getFruits, null, this);
+    this.physics.add.overlap(gameState.player, this.fruits, this.getFruits, null, this);
     // Move to gameover scean
     this.physics.add.overlap(this.enemies, gameState.player, this.changeToGameOver, null, this);
   }
@@ -144,9 +147,12 @@ class Play extends Phaser.Scene {
     }
   }
 
-  getFruits() {
-    gameState.score += 3;
+  getFruits(player, fruit) {
+    fruit.destroy();
+    this.getSound.play();
+    gameState.score += 10;
     this.scoreText.setText(`Score: ${gameState.score}`);
+    return false;
   }
 
   changeToGameOver() {

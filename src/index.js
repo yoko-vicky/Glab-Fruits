@@ -27,4 +27,4 @@ const config = {
   scene: [Start, InputName, Play, GameOver, Score],
 };
 
-window.game = new Phaser.Game(config);
+gameState.game = new Phaser.Game(config);

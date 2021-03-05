@@ -10,7 +10,7 @@ const getData = async () => {
   const data = await getGameResult();
   return data
     .sort((a, b) => (a.score > b.score ? -1 : 1))
-    .filter((item) => typeof item.user === 'string')
+    .filter((item) => typeof item.user === 'string' && item.score % 10 === 0)
     .slice(0, 5);
 };
 
