@@ -3,7 +3,7 @@ import gameState from '../helpers/gameState';
 import startImg from '../assets/images/start.png';
 import titleImg from '../assets/images/title.png';
 import girlImg from '../assets/images/girl.png';
-import clickGoSound from '../assets/sounds/click2.wav';
+import clickGoSound from '../assets/sounds/click2.mp3';
 
 class Start extends Phaser.Scene {
   constructor() {

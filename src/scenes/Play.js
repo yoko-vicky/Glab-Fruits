@@ -9,8 +9,8 @@ import leafImg from '../assets/images/leaf.png';
 import spiderImg from '../assets/images/spider.png';
 import bananaImg from '../assets/images/banana.png';
 import playMusic from '../assets/sounds/game1.mp3';
-import ouchSound from '../assets/sounds/ouch.wav';
-import getSound from '../assets/sounds/get.wav';
+import ouchSound from '../assets/sounds/ouch.mp3';
+import getSound from '../assets/sounds/get.mp3';
 
 class Play extends Phaser.Scene {
   constructor() {
