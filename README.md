@@ -1,6 +1,6 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
-# Platform Game
-![Top Page Screenshot](./screenshot.png)
+# Grab Fruits!
+![Top Page Screenshot](./screenshot.gif)
 
 
 ## About the Project
@@ -79,13 +79,7 @@ This project is [MIT](./LICENSE) licensed.
 
 
 ## Acknowledgements
-* [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-* [Img Shields](https://shields.io)
-* [Choose an Open Source License](https://choosealicense.com)
-
-<!-- Illustration by <a href="undefined">Icons 8</a> from <a href="https://icons8.com/">Icons8</a> -->
-<!-- https://www.gameart2d.com/freebies.html -->
-<!-- https://icons8.com/illustrations -->
-<!-- https://mixkit.co/free-sound-effects/game/ -->
-<!-- https://www.youtube.com/audiolibrary -->
-<!-- https://www.zapsplat.com/sound-effect-category/game-sounds/ -->
+* [Illustration by Icons 8](https://icons8.com/)
+* [Game Art 2D](https://www.gameart2d.com/freebies.html)
+* [Mixkit](https://mixkit.co/free-sound-effects/game/)
+* [YouTube Auduo Library](https://mixkit.co/free-sound-effects/game/)
