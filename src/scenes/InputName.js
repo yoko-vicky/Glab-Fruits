@@ -1,8 +1,8 @@
 import Phaser from 'phaser';
 import gameState from '../helpers/gameState';
-import btnImg from '../assets/go.png';
-import openingMusic from '../assets/game3.mp3';
-import clickSound from '../assets/click1.wav';
+import btnImg from '../assets/images/go.png';
+import openingMusic from '../assets/sounds/game3.mp3';
+import clickSound from '../assets/sounds/click1.wav';
 
 class InputName extends Phaser.Scene {
   constructor() {

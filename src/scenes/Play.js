@@ -1,17 +1,16 @@
 import Phaser from 'phaser';
 import gameState from '../helpers/gameState';
-import playerImg from '../assets/player.png';
-import appleImg from '../assets/apple.png';
-import poisonAppleImg from '../assets/poison-apple.png';
-import pineAppleImg from '../assets/pineapple.png';
-import landImg from '../assets/land.png';
-import treeImg from '../assets/tree.png';
-import leafImg from '../assets/leaf.png';
-import spiderImg from '../assets/spider.png';
-import bananaImg from '../assets/banana.png';
-import playMusic from '../assets/game1.mp3';
-import ouchSound from '../assets/ouch.wav';
-import getSound from '../assets/get.wav';
+import playerImg from '../assets/images/player.png';
+import appleImg from '../assets/images/apple.png';
+import pineAppleImg from '../assets/images/pineapple.png';
+import landImg from '../assets/images/land.png';
+import treeImg from '../assets/images/tree.png';
+import leafImg from '../assets/images/leaf.png';
+import spiderImg from '../assets/images/spider.png';
+import bananaImg from '../assets/images/banana.png';
+import playMusic from '../assets/sounds/game1.mp3';
+import ouchSound from '../assets/sounds/ouch.wav';
+import getSound from '../assets/sounds/get.wav';
 
 class Play extends Phaser.Scene {
   constructor() {
@@ -26,7 +25,6 @@ class Play extends Phaser.Scene {
     this.load.image('fruit2', bananaImg);
     this.load.image('fruit3', pineAppleImg);
     this.load.image('enemy1', spiderImg);
-    this.load.image('enemy2', poisonAppleImg);
     this.load.audio('play-music', playMusic);
     this.load.audio('ouch-sound', ouchSound);
     this.load.audio('get-sound', getSound);
@@ -138,7 +136,7 @@ class Play extends Phaser.Scene {
       gameState.player.anims.play('run', true);
       gameState.player.flipX = false;
     } else if (this.cursors.up.isDown && gameState.player.body.touching.down) {
-      gameState.player.setVelocityY(-80);
+      gameState.player.setVelocityY(-180);
       gameState.player.anims.play('jump', true);
       gameState.player.flipX = true;
     } else {

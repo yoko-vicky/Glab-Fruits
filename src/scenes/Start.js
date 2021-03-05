@@ -1,9 +1,9 @@
 import Phaser from 'phaser';
 import gameState from '../helpers/gameState';
-import startImg from '../assets/start.png';
-import titleImg from '../assets/title.png';
-import girlImg from '../assets/girl.png';
-import clickGoSound from '../assets/click2.wav';
+import startImg from '../assets/images/start.png';
+import titleImg from '../assets/images/title.png';
+import girlImg from '../assets/images/girl.png';
+import clickGoSound from '../assets/sounds/click2.wav';
 
 class Start extends Phaser.Scene {
   constructor() {

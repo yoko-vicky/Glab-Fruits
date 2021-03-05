@@ -1,17 +1,13 @@
 import Phaser from 'phaser';
 import gameState from '../helpers/gameState';
-import landImg from '../assets/land.png';
-import treeImg from '../assets/tree.png';
-import leaf2Img from '../assets/leaf-2.png';
-import restartImg from '../assets/restart.png';
-import topImg from '../assets/top.png';
-import scoreImg from '../assets/score.png';
-import gameOverTitle from '../assets/gameover.png';
+import leaf2Img from '../assets/images/leaf-2.png';
+import restartImg from '../assets/images/restart.png';
+import topImg from '../assets/images/top.png';
+import scoreImg from '../assets/images/score.png';
+import gameOverTitle from '../assets/images/gameover.png';
 import setData from '../helpers/setData';
 import scorePosRateX from '../helpers/scorePosRateX';
-import gameOverMusic from '../assets/game2.mp3';
-// import clickSound from '../assets/click1.wav';
-// import clickGoSound from '../assets/click2.wav';
+import gameOverMusic from '../assets/sounds/game2.mp3';
 
 class GameOver extends Phaser.Scene {
   constructor() {
@@ -19,8 +15,6 @@ class GameOver extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image('platform', landImg);
-    this.load.image('tree', treeImg);
     this.load.image('leaf2', leaf2Img);
     this.load.image('restart', restartImg);
     this.load.image('top', topImg);

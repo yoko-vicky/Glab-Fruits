@@ -1,10 +1,8 @@
 import Phaser from 'phaser';
 import gameState from '../helpers/gameState';
-import topImg from '../assets/top.png';
-import restartImg from '../assets/restart.png';
-import topScorersImg from '../assets/top-scorers.png';
+import topScorersImg from '../assets/images/top-scorers.png';
 import getData from '../helpers/getData';
-import scoreMusic from '../assets/score.wav';
+import scoreMusic from '../assets/sounds/score.wav';
 
 class Score extends Phaser.Scene {
   constructor() {
@@ -12,8 +10,6 @@ class Score extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image('top', topImg);
-    this.load.image('restart', restartImg);
     this.load.image('top-scorers', topScorersImg);
     this.load.audio('score-music', scoreMusic);
   }
