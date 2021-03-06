@@ -190,6 +190,7 @@ class Play extends Phaser.Scene {
     if (gameState.player.x >= (gameState.camera.width - 36)) {
       gameState.player.setX(0);
     }
+
     if (this.cursors.left.isDown) {
       gameState.player.setVelocityX(-160);
       gameState.player.anims.play('run', true);
@@ -198,13 +199,19 @@ class Play extends Phaser.Scene {
       gameState.player.setVelocityX(160);
       gameState.player.anims.play('run', true);
       gameState.player.flipX = false;
-    } else if (this.cursors.up.isDown && gameState.player.body.touching.down) {
-      gameState.player.setVelocityY(-360);
-      gameState.player.anims.play('jump', true);
-      gameState.player.flipX = true;
     } else {
       gameState.player.setVelocityX(0);
       gameState.player.anims.play('idle', true);
+    }
+
+    if (Phaser.Input.Keyboard.JustDown(this.cursors.up)) {
+      if (gameState.player.body.onFloor()) {
+        this.canDoubleJump = true;
+        gameState.player.body.setVelocityY(-300);
+      } else if (this.canDoubleJump) {
+        this.canDoubleJump = false;
+        gameState.player.body.setVelocityY(-300);
+      }
     }
   }
 

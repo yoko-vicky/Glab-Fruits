@@ -95,4 +95,4 @@ This project is [MIT](./LICENSE) licensed.
 * [Game Art 2D](https://www.gameart2d.com/freebies.html)
 * [Mixkit](https://mixkit.co/free-sound-effects/game/)
 * [YouTube Auduo Library](https://mixkit.co/free-sound-effects/game/)
-* [freepik](https://www.freepik.com/)
+* [Freepik](https://www.freepik.com/)
