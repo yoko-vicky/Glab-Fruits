@@ -5,7 +5,12 @@
 
 ## About the Project
 
-This project is based on ...
+This project is to build a platform game with **Phaser** library, and was built as the JavaScript capstone project at Microverse.
+
+In this project, I was expected to implement these things:
+- Apply a scoring system using the given API to save the score associated to the game and the user name, and display a leaderboard 
+- 
+
 
 A list of commonly used resources that I find helpful is listed in the acknowledgments.
 
@@ -46,6 +51,13 @@ To get a local copy up and running follow these simple example steps.
 e.g. $ git clone https://github.com/yourUsername/yourProjectName 
 7. Press Enter. Your local copy will be created. 
 
+## How to run the game
+
+1. After cloning or downloading this repository, in the terminal, move to this folder 
+eg: `cd Desktop/platform-game`
+
+2. 
+<!-- - instructions on how to run the game in a local environment -->
 
 ## Author
 
@@ -83,4 +95,4 @@ This project is [MIT](./LICENSE) licensed.
 * [Game Art 2D](https://www.gameart2d.com/freebies.html)
 * [Mixkit](https://mixkit.co/free-sound-effects/game/)
 * [YouTube Auduo Library](https://mixkit.co/free-sound-effects/game/)
-<!-- <a href="https://www.freepik.com/vectors/tree">Tree vector created by freepik - www.freepik.com</a> -->
+* [freepik](https://www.freepik.com/)

@@ -89,7 +89,7 @@ class InputName extends Phaser.Scene {
     if (!this.validResult) {
       this.errorMsg();
     } else {
-      gameState.player = this.inputName;
+      gameState.playerName = this.inputName;
       this.stopInputName();
     }
   }
