@@ -23,7 +23,7 @@ canvas {
 
 #my-field {
   position: relative;
-  top: 80px;
+  top: 50px;
   display: flex;
   flex-flow: column;
   justify-content: center;

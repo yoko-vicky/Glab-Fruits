@@ -145,7 +145,7 @@ class Play extends Phaser.Scene {
     };
 
     this.fruitGenLoop = this.time.addEvent({
-      delay: 100,
+      delay: gameState.fruitDelay,
       callback: this.fruitGen,
       callbackScope: this,
       loop: true,
@@ -163,7 +163,7 @@ class Play extends Phaser.Scene {
     };
 
     this.enemyGenLoop = this.time.addEvent({
-      delay: 600,
+      delay: gameState.enemyDelay,
       callback: this.enemyGen,
       callbackScope: this,
       loop: true,
