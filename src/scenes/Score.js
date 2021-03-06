@@ -15,32 +15,50 @@ class Score extends Phaser.Scene {
   }
 
   create() {
+    this.addTitle();
+    this.addSounds();
+    this.renderRanking();
+    this.addButtons();
+  }
+
+  addSounds() {
     this.clickSound = this.sound.add('click-sound');
     this.scoreMusic = this.sound.add('score-music');
     this.scoreMusic.loop = false;
     this.scoreMusic.play();
+  }
 
+  addTitle() {
     this.add.image(gameState.canvas.width * 0.5, gameState.canvas.height * 0.2, 'top-scorers');
-    getData().then(data => {
+  }
+
+  async renderRanking() {
+    try {
+      const data = await getData();
       gameState.topFive = data;
       gameState.topFive.forEach((result, index) => {
         this.add.text(gameState.canvas.width * 0.38, gameState.canvas.height * 0.35 + (index * 30), `${index + 1}. ${result.user} : ${result.score}`, { fill: '#000000', font: '700 18px Roboto' });
       });
-    }).catch(() => {
+    } catch {
       this.add.text(gameState.canvas.width * 0.25, gameState.canvas.height * 0.45, 'Sorry, for some reason, unable to get the score data.', { fill: '#000000' });
-    });
+    }
+  }
 
+  stopScore() {
+    this.scene.stop('Score');
+    this.clickSound.play();
+  }
+
+  addButtons() {
     this.restart = this.add.image(gameState.canvas.width * 0.5, gameState.canvas.height * 0.75, 'restart');
     this.totop = this.add.image(gameState.canvas.width * 0.5, gameState.canvas.height * 0.9, 'top');
 
     this.totop.setInteractive().on('pointerup', () => {
-      this.scene.stop('Score');
-      this.clickSound.play();
+      this.stopScore();
       this.scene.start('Start');
     });
     this.restart.setInteractive().on('pointerup', () => {
-      this.scene.stop('Score');
-      this.clickSound.play();
+      this.stopScore();
       this.scene.start('Play');
     });
   }

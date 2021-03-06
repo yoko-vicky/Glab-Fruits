@@ -23,37 +23,49 @@ class GameOver extends Phaser.Scene {
 
   create() {
     setData(gameState.player, gameState.score);
-    this.add.image(gameState.canvas.width * 0.5, gameState.canvas.height * 0.5, 'tree');
-    this.add.image(gameState.canvas.width * 0.5, 95, 'leaf');
-    this.add.image(gameState.canvas.width * 0.5, gameState.canvas.height * 0.18, 'gameover-title');
+    this.addImages();
+    this.addSounds();
+    this.addScore();
+    this.addButtons();
 
-    this.add.text(gameState.canvas.width * scorePosRateX(), gameState.canvas.height * 0.3, `${gameState.score}`, { fill: '#FFFFFF', font: '800 68px Roboto' });
-
-    this.restart = this.add.image(gameState.canvas.width * 0.5, gameState.canvas.height * 0.55, 'restart');
-    this.totop = this.add.image(gameState.canvas.width * 0.5, gameState.canvas.height * 0.7, 'top');
-    this.toscore = this.add.image(gameState.canvas.width * 0.5, gameState.canvas.height * 0.85, 'score');
     this.restart.setInteractive().on('pointerup', () => {
-      gameState.score = 0;
-      this.scene.stop('GameOver');
-      this.gameOverMusic.stop();
-      this.clickGoSound.play();
+      this.stopGameOver();
       this.scene.start('Play');
     });
     this.totop.setInteractive().on('pointerup', () => {
-      gameState.score = 0;
-      this.scene.stop('GameOver');
-      this.gameOverMusic.stop();
-      this.clickSound.play();
+      this.stopGameOver();
       this.scene.start('Start');
     });
     this.toscore.setInteractive().on('pointerup', () => {
-      gameState.score = 0;
-      this.scene.stop('GameOver');
-      this.gameOverMusic.stop();
-      this.clickSound.play();
+      this.stopGameOver();
       this.scene.start('Score');
     });
+  }
 
+  addImages() {
+    this.add.image(gameState.canvas.width * 0.5, gameState.canvas.height * 0.5, 'tree');
+    this.add.image(gameState.canvas.width * 0.5, 95, 'leaf');
+    this.add.image(gameState.canvas.width * 0.5, gameState.canvas.height * 0.18, 'gameover-title');
+  }
+
+  addScore() {
+    this.add.text(gameState.canvas.width * scorePosRateX(), gameState.canvas.height * 0.3, `${gameState.score}`, { fill: '#FFFFFF', font: '800 68px Roboto' });
+  }
+
+  addButtons() {
+    this.restart = this.add.image(gameState.canvas.width * 0.5, gameState.canvas.height * 0.55, 'restart');
+    this.totop = this.add.image(gameState.canvas.width * 0.5, gameState.canvas.height * 0.7, 'top');
+    this.toscore = this.add.image(gameState.canvas.width * 0.5, gameState.canvas.height * 0.85, 'score');
+  }
+
+  stopGameOver() {
+    gameState.score = 0;
+    this.scene.stop('GameOver');
+    this.gameOverMusic.stop();
+    this.clickGoSound.play();
+  }
+
+  addSounds() {
     this.clickSound = this.sound.add('click-sound');
     this.clickGoSound = this.sound.add('click-go-sound');
     this.gameOverMusic = this.sound.add('gameover-music');

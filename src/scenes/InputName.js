@@ -16,38 +16,56 @@ class InputName extends Phaser.Scene {
   }
 
   create() {
+    this.createForm();
+    this.addSounds();
+    this.button.setInteractive().on('pointerup', () => {
+      this.clickSound.play();
+      this.validateName();
+
+      if (!this.validResult) {
+        this.errorMsg();
+      } else {
+        gameState.player = this.inputName;
+        this.stopInputName();
+      }
+    });
+  }
+
+  addSounds() {
     this.openingMusic = this.sound.add('opening-music');
     this.openingMusic.loop = true;
     this.openingMusic.play();
     this.clickSound = this.sound.add('click-sound');
+  }
 
+  createForm() {
     this.input = this.add.dom(gameState.canvas.width * 0.25, 300, 'input');
     this.button = this.add.image(gameState.canvas.width * 0.5, gameState.canvas.height * 0.6, 'btn-image');
     this.text = this.add.text(gameState.canvas.width * 0.3, gameState.canvas.height * 0.3, 'Please enter your name', { fill: '#000000', font: '400 17px Roboto' });
 
-    const myfield = document.querySelector('canvas').previousSibling;
-    myfield.removeAttribute('style');
-    myfield.setAttribute('id', 'my-field');
+    this.myfield = document.querySelector('canvas').previousSibling;
+    this.myfield.removeAttribute('style');
+    this.myfield.setAttribute('id', 'my-field');
 
-    const myInput = myfield.querySelector('input');
-    myInput.setAttribute('id', 'my-input');
-    myInput.removeAttribute('style');
+    this.myInput = this.myfield.querySelector('input');
+    this.myInput.setAttribute('id', 'my-input');
+    this.myInput.removeAttribute('style');
+  }
 
-    this.button.setInteractive().on('pointerup', () => {
-      this.clickSound.play();
-      const inputName = myInput.value;
-      const validResult = inputName.length >= 3 && inputName.length <= 10 && inputName.match(/[a-zA-Z0-9]/g);
+  validateName() {
+    this.inputName = this.myInput.value;
+    this.validResult = this.inputName.length >= 3 && this.inputName.length <= 10 && this.inputName.match(/[a-zA-Z0-9]/g);
+  }
 
-      if (!validResult) {
-        this.add.text(gameState.canvas.width * 0.15, gameState.canvas.height * 0.8, 'Name length should be between 3 and 10 letters,', { fill: '#000000', font: '400 14px Roboto' });
-        this.add.text(gameState.canvas.width * 0.18, gameState.canvas.height * 0.85, 'and only alphabet and number can be used.', { fill: '#000000', font: '400 14px Roboto' });
-      } else {
-        gameState.player = inputName;
-        this.scene.stop('inputName');
-        this.openingMusic.stop();
-        this.scene.start('Play');
-      }
-    });
+  errorMsg() {
+    this.add.text(gameState.canvas.width * 0.15, gameState.canvas.height * 0.8, 'Name length should be between 3 and 10 letters,', { fill: '#000000', font: '400 14px Roboto' });
+    this.add.text(gameState.canvas.width * 0.18, gameState.canvas.height * 0.85, 'and only alphabet and number can be used.', { fill: '#000000', font: '400 14px Roboto' });
+  }
+
+  stopInputName() {
+    this.openingMusic.stop();
+    this.scene.stop('inputName');
+    this.scene.start('Play');
   }
 }
 

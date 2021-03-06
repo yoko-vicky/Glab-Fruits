@@ -42,18 +42,44 @@ class Play extends Phaser.Scene {
 
   create() {
     this.createParallaxBackgrounds();
+    this.createMainTree();
+    this.createPlatforms();
+    this.createPlayer();
+    this.createScore();
+    this.setCameras();
+    this.createCursor();
+    this.createFruits();
+    this.createEnemies();
+    this.addColliders();
+    this.addSounds();
+  }
 
-    this.ouchSound = this.sound.add('ouch-sound');
-    this.getSound = this.sound.add('get-sound');
-    this.playMusic = this.sound.add('play-music');
-    this.playMusic.loop = true;
-    this.playMusic.play();
+  createParallaxBackgrounds() {
+    this.bg1 = this.add.image(0, 0, 'mountain');
+    this.bg3 = this.add.image(0, 0, 'green');
+    this.bg2 = this.add.image(0, 0, 'trees');
 
-    // tree
+    this.bg1.setOrigin(0, 0);
+    this.bg2.setOrigin(0, 0);
+    this.bg3.setOrigin(0, 0);
+
+    const gameWidth = parseFloat(this.bg3.getBounds().width);
+    // gameState.camera.width = gameWidth;
+    const windowWidth = gameState.canvas.width;
+
+    const bg1Width = this.bg1.getBounds().width;
+    const bg2Width = this.bg2.getBounds().width;
+
+    this.bg1.setScrollFactor((bg1Width - windowWidth) / (gameWidth - windowWidth));
+    this.bg2.setScrollFactor((bg2Width - windowWidth) / (gameWidth - windowWidth));
+  }
+
+  createMainTree() {
     this.add.image(gameState.camera.width * 0.5, gameState.canvas.height * 0.5, 'tree');
     this.add.image(gameState.camera.width * 0.5, 95, 'leaf');
+  }
 
-    // land
+  createPlatforms() {
     this.land = this.physics.add.staticGroup();
     this.land.create(gameState.canvas.width * 0.5, gameState.canvas.height - 10, 'platform').setScale(1.1, 1).refreshBody();
     this.land.create(20, 500, 'mini-platform');
@@ -64,7 +90,9 @@ class Play extends Phaser.Scene {
     this.land.create(680, 500, 'mini-platform');
     this.land.create(780, 240, 'mini-platform');
     this.land.create(940, 340, 'mini-platform');
-    // player
+  }
+
+  createPlayer() {
     gameState.player = this.physics.add.sprite(gameState.canvas.width * 0.5, gameState.canvas.height * 0.8, 'girl').setScale(0.5);
     this.add.existing(gameState.player);
     this.physics.add.collider(gameState.player, this.land);
@@ -89,23 +117,24 @@ class Play extends Phaser.Scene {
       frameRate: 5,
       repeat: -1,
     });
+  }
 
-    // score
+  createScore() {
     this.scoreText = this.add.text(gameState.canvas.width * 0.41, gameState.canvas.height - 16, 'Score: 0', { fill: '#FFFFFF', font: '400 15px Roboto' });
+  }
 
-    // set Cameras
+  setCameras() {
     this.cameras.main.setBounds(0, 0, gameState.camera.width, gameState.camera.height);
     this.physics.world.setBounds(0, 0, gameState.camera.width, gameState.camera.height);
     this.cameras.main.startFollow(gameState.player, true, 0.5, 0.5);
     this.scoreText.setScrollFactor(0);
+  }
 
-    // colliders
-    gameState.player.setCollideWorldBounds(true);
-
-    // cursor
+  createCursor() {
     this.cursors = this.input.keyboard.createCursorKeys();
+  }
 
-    // Fruites
+  createFruits() {
     this.fruits = this.physics.add.group();
     this.fruitList = ['fruit1', 'fruit2', 'fruit3'];
 
@@ -121,8 +150,9 @@ class Play extends Phaser.Scene {
       callbackScope: this,
       loop: true,
     });
+  }
 
-    // enemies
+  createEnemies() {
     this.enemies = this.physics.add.group();
     this.enemiesList = ['enemy1'];
 
@@ -138,35 +168,22 @@ class Play extends Phaser.Scene {
       callbackScope: this,
       loop: true,
     });
-
-    // Colliders
-    this.physics.add.collider(this.fruits, this.land, (fruit) => { fruit.destroy(); });
-    this.physics.add.collider(this.enemies, this.land, (enemy) => { enemy.destroy(); });
-
-    // Adds a win condition
-    this.physics.add.overlap(gameState.player, this.fruits, this.getFruits, null, this);
-    // Move to gameover scean
-    this.physics.add.overlap(this.enemies, gameState.player, this.changeToGameOver, null, this);
   }
 
-  createParallaxBackgrounds() {
-    this.bg1 = this.add.image(0, 0, 'mountain');
-    this.bg3 = this.add.image(0, 0, 'green');
-    this.bg2 = this.add.image(0, 0, 'trees');
+  addSounds() {
+    this.ouchSound = this.sound.add('ouch-sound');
+    this.getSound = this.sound.add('get-sound');
+    this.playMusic = this.sound.add('play-music');
+    this.playMusic.loop = true;
+    this.playMusic.play();
+  }
 
-    this.bg1.setOrigin(0, 0);
-    this.bg2.setOrigin(0, 0);
-    this.bg3.setOrigin(0, 0);
-
-    const gameWidth = parseFloat(this.bg3.getBounds().width);
-    // gameState.camera.width = gameWidth;
-    const windowWidth = gameState.canvas.width;
-
-    const bg1Width = this.bg1.getBounds().width;
-    const bg2Width = this.bg2.getBounds().width;
-
-    this.bg1.setScrollFactor((bg1Width - windowWidth) / (gameWidth - windowWidth));
-    this.bg2.setScrollFactor((bg2Width - windowWidth) / (gameWidth - windowWidth));
+  addColliders() {
+    gameState.player.setCollideWorldBounds(true);
+    this.physics.add.collider(this.fruits, this.land, (fruit) => { fruit.destroy(); });
+    this.physics.add.collider(this.enemies, this.land, (enemy) => { enemy.destroy(); });
+    this.physics.add.overlap(gameState.player, this.fruits, this.getFruits, null, this);
+    this.physics.add.overlap(this.enemies, gameState.player, this.changeToGameOver, null, this);
   }
 
   update() {
@@ -194,7 +211,7 @@ class Play extends Phaser.Scene {
   getFruits(player, fruit) {
     fruit.destroy();
     this.getSound.play();
-    gameState.score += 10;
+    gameState.score += 70;
     this.scoreText.setText(`Score: ${gameState.score}`);
     return false;
   }
