@@ -64,7 +64,7 @@ Show the top 5 scorers' name and their scores in the score view.
 * Fruits: apples, bananas, pineapples
 * A big tree with some fruits
 * Platforms: there are several small blocks that the main character can jump on
-* Background images: In the background, there are green grasses, trees, and a mountain. Parallax design is applied to them.
+* Background images: In the background, there are green grasses, trees, and a mountain. Parallax design is applied to them
 
 # Assets
 

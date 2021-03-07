@@ -11,7 +11,7 @@ In this project, I did these things:
 - Planned the game overview and specific mechanic with [Game Design Document(GDD)](./game-design-document.md)
 - Built platform game with [Phaser library](https://phaser.io/phaser3)
 - Implemented a scoring system using the given API to save the score with a username and display it in a game view
-- Deployed to a server so the game is accessible
+- Deployed to a server so the game is accessible for anyone
 
 Also, these features are added:
 - Three mode: Easy, normal, and hard that is different on the speed of showing enemies and fruits
@@ -46,7 +46,7 @@ A list of commonly used resources that I find helpful is listed in the acknowled
 
 ## Live Demo
 
-[Live Demo Link](https://yokosaka-grab-fruits.netlify.app/)
+[Live Demo Link](https://yocosaka.com/Platform-game/dist/)
 
 
 ## Game Design Document
@@ -66,6 +66,7 @@ To get a local copy up and running follow these simple example steps.
 6. Type git clone, and then paste the URL you copied in Step 3. <br>
 e.g. $ git clone https://github.com/yourUsername/yourProjectName 
 7. Press Enter. Your local copy will be created. 
+8. To run the test, run `npm test`
 
 
 ## How to run the game
@@ -74,7 +75,7 @@ e.g. $ git clone https://github.com/yourUsername/yourProjectName
 eg: `cd Desktop/platform-game`
 2. Run `npm install` or `yarn install`
 3. After installing packages in step2, run `npm run build`
-4. Run `npm run dev`, then the local server will be automatically opend
+4. Run `npm run dev`, then the local server will be automatically opened
 5. Choose dist folder, and start the game
 
 
@@ -89,7 +90,7 @@ A player is expected to collect as many fruits as possible without touching spid
 2. Input a username that will be shown if a player will be a top 5 scorer.
 3. Choose the mode from easy, normal, or hard that is different on the speed of showing spiders(enemy) and fruits
 4. Start the game
-5. In the gameover view, 
+5. In the game-over view, 
   - To see the top 5 scorers, click the "Score" button.
   - To start the different username or mode, click the "TOP" button
   - To restart the game in the same mode, click the "Restart" button
@@ -101,7 +102,7 @@ A player is expected to collect as many fruits as possible without touching spid
 
 ## Rule of the game
 
-- A player can get a **70** scores when touching a fruit
+- A player gets a **70** scores when touching a fruit
 - The game will be over when a player touches a spider
 - A player can be operated by using keyboard cursors arrows (&larr;, &rarr;, &uarr;). 
 - To run to the left, click **&larr;**, to the right, click **&rarr;**, and to jump up, click **&uarr;**

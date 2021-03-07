@@ -1,4 +1,5 @@
 const path = require('path');
+// eslint-disable-next-line import/no-unresolved
 const webpack = require('webpack');
 
 module.exports = {
@@ -9,6 +10,7 @@ module.exports = {
   output: {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
+    publicPath: '',
   },
   module: {
     rules: [
