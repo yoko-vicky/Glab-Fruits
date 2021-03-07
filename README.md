@@ -39,7 +39,7 @@ A list of commonly used resources that I find helpful is listed in the acknowled
 ## Built With
 
 * [HTML5](https://en.wikipedia.org/wiki/HTML5)
-* [CSS](https://sass-lang.com/)
+* [CSS](https://en.wikipedia.org/wiki/CSS)
 * [JavaScript](https://en.wikipedia.org/wiki/JavaScript)
 * [Phaser 3](https://phaser.io/phaser3)
 
