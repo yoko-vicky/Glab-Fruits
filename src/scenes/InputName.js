@@ -28,15 +28,15 @@ class InputName extends Phaser.Scene {
     this.addSounds();
     this.addButtons();
     this.easyBtn.setInteractive().on('pointerup', () => {
-      setMode(80, 600);
+      setMode(80, 600, 'easy');
       this.gameStart();
     });
     this.normalBtn.setInteractive().on('pointerup', () => {
-      setMode(80, 300);
+      setMode(80, 300, 'normal');
       this.gameStart();
     });
     this.hardBtn.setInteractive().on('pointerup', () => {
-      setMode(60, 100);
+      setMode(60, 100, 'hard');
       this.gameStart();
     });
   }

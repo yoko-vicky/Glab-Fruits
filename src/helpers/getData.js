@@ -7,11 +7,11 @@ const getGameResult = async () => {
   return data;
 };
 
-const getData = async () => {
+const getData = async (playMode) => {
   const data = await getGameResult();
   return data
     .sort((a, b) => (a.score > b.score ? -1 : 1))
-    .filter((item) => typeof item.user === 'string' && item.score % 10 === 0)
+    .filter((item) => typeof item.user.name === 'string' && item.score % 10 === 0 && item.user.mode === playMode)
     .slice(0, 5);
 };
 

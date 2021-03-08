@@ -7,8 +7,8 @@ const setUserScore = async (userData) => {
   return data.result;
 };
 
-const setData = async (playerName, playerScore) => {
-  const userData = { user: playerName, score: playerScore };
+const setData = async (playerName, playerScore, playMode) => {
+  const userData = { user: { name: playerName, mode: playMode }, score: playerScore };
   const message = await setUserScore(userData);
   return message;
 };

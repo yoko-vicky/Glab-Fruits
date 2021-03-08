@@ -31,14 +31,15 @@ class Score extends Phaser.Scene {
 
   addTitle() {
     this.add.image(gameState.canvas.width * 0.5, gameState.canvas.height * 0.2, 'top-scorers');
+    this.add.text(gameState.canvas.width * 0.34, gameState.canvas.height * 0.26, `In ${gameState.mode} mode`, { fill: '#3B76D8', font: '700 24px Roboto' });
   }
 
   async renderRanking() {
     try {
-      const data = await getData();
+      const data = await getData(gameState.mode);
       gameState.topFive = data;
       gameState.topFive.forEach((result, index) => {
-        this.add.text(gameState.canvas.width * 0.38, gameState.canvas.height * 0.35 + (index * 30), `${index + 1}. ${result.user} : ${result.score}`, { fill: '#000000', font: '700 18px Roboto' });
+        this.add.text(gameState.canvas.width * 0.38, gameState.canvas.height * 0.35 + (index * 30), `${index + 1}. ${result.user.name} : ${result.score}`, { fill: '#000000', font: '700 20px Roboto' });
       });
     } catch {
       this.add.text(gameState.canvas.width * 0.25, gameState.canvas.height * 0.45, 'Sorry, for some reason, unable to get the score data.', { fill: '#000000' });

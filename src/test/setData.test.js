@@ -6,7 +6,7 @@ jest.mock('axios');
 test('should set the data of the user and its score', async () => {
   const returnData = { data: { result: 'Leaderboard score created correctly.' } };
   axios.post.mockResolvedValue(returnData);
-  const response = await setData('hana', 2020);
+  const response = await setData('hana', 2020, 'easy');
   expect(response).toEqual('Leaderboard score created correctly.');
 });
 

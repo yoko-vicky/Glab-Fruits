@@ -4,8 +4,8 @@ import getData from '../helpers/getData';
 
 jest.mock('axios');
 test('should fetch result data with users and scores', async () => {
-  const dbData = { data: { result: [{ score: 1580, user: 'user2' }, { score: 260, user: 'user1' }] } };
+  const dbData = { data: { result: [{ score: 1580, user: { name: 'user1', mode: 'easy' } }, { score: 260, user: { name: 'user2', mode: 'easy' } }] } };
   axios.get.mockResolvedValue(dbData);
-  const response = await getData();
+  const response = await getData('easy');
   expect(response.length).toEqual(2);
 });

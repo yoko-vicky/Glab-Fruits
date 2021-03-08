@@ -23,7 +23,7 @@ class GameOver extends Phaser.Scene {
   }
 
   create() {
-    setData(gameState.playerName, gameState.score);
+    setData(gameState.playerName, gameState.score, gameState.mode);
     this.addImages();
     this.addSounds();
     this.addScore();
