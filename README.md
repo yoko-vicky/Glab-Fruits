@@ -14,7 +14,7 @@ In this project, I did these things:
 - Deployed to a server so the game is accessible for anyone
 
 Also, these features are added:
-- Three mode: Easy, normal, and hard that is different on the speed of showing enemies and fruits
+- Three modes: Easy, normal, and hard that is different on the speed of showing enemies and fruits
 - Double jump: The main character can double jump
 
 A list of commonly used resources that I find helpful is listed in the acknowledgments.
