@@ -42,6 +42,8 @@ A list of commonly used resources that I find helpful is listed in the acknowled
 * [CSS](https://en.wikipedia.org/wiki/CSS)
 * [JavaScript](https://en.wikipedia.org/wiki/JavaScript)
 * [Phaser 3](https://phaser.io/phaser3)
+* [Webpack 5](https://webpack.js.org/)
+* [Babel](https://babeljs.io/)
 
 
 ## Live Demo
