@@ -47,3 +47,4 @@ node_modules/
 /memo
 /package-lock.json
 yarn.lock
+./dist
