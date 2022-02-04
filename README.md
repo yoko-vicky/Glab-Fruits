@@ -46,7 +46,7 @@ A list of commonly used resources that I find helpful is listed in the acknowled
 
 ## Live Demo
 
-[Live Demo Link](https://yocosaka.com/Platform-game/dist/)
+[Live Demo Link](https://github.com/yocosaka/Glab-Fruits/dist/)
 
 
 ## Game Design Document
