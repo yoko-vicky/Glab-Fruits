@@ -47,5 +47,7 @@ node_modules/
 /memo
 /package-lock.json
 yarn.lock
-./dist
-dist
+dist/*.png
+dist/*.mp3
+dist/index.bundle.js
+dist/favicon
