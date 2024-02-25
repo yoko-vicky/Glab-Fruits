@@ -6,20 +6,20 @@
 
 ## About the Project
 
-This project is to build a platform game with **Phaser** library.
-It was built as the JavaScript capstone project at Microverse.
+This project revolves around creating a platform game using the Phaser library, serving as the JavaScript capstone project at Microverse.
 
-In this project, I did these things:
+### Key Tasks Accomplished:
 
-- Planned the game overview and specific mechanic with [Game Design Document(GDD)](./game-design-document.md)
-- Built platform game with [Phaser library](https://phaser.io/phaser3)
-- Implemented a scoring system using the given API to save the score with a username and display it in a game view
-- Deployed to a server so the game is accessible for anyone
+- Crafted a comprehensive [Game Design Document(GDD)](./game-design-document.md) outlining the game's overview and specific mechanics.
+- Developed the platform game utilizing the [Phaser library](https://phaser.io/phaser3).
+- Implemented a scoring system utilizing an API to save scores with associated usernames, displaying them within the game view.
+- Deployed the game onto a server, ensuring accessibility to all users.
 
-Also, these features are added:
 
-- Three modes: Easy, normal, and hard that is different on the speed of showing enemies and fruits
-- Double jump: The main character can double jump
+### Additional Features:
+
+Three distinct modes (Easy, Normal, and Hard) with varying enemy and fruit speed settings.
+Introduced the ability for the main character to execute a double jump.
 
 A list of commonly used resources that I find helpful is listed in the acknowledgments.
 
