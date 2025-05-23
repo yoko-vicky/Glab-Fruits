@@ -1,82 +1,164 @@
+# 🍓 Grab Fruits! – Game Design Document (GDD)
+
 ![game-image.png](./game-image.png)
 
-**🎮️ Name of the game:  Grab Fruits!\
-👥 Stakeholders:**
+**🎮 Game Name:** Grab Fruits!  
+**👤 Role:** Designed, developed, and tested solo by [Yoko Saka](https://github.com/yocosaka)  
+**🧠 Focus:** UX-driven game flow, intuitive feedback, and playful micro-interactions
 
-* Dev: [Yoko Saka](https://github.com/yocosaka)
-* Design: [Yoko Saka](https://github.com/yocosaka)
-* QA:[Yoko Saka](https://github.com/yocosaka)
+---
 
-# Overview
+## 🗺 Overview
 
-## 📐 Project scope
+### 📐 Project Scope
+- **Timeline:** Delivered in 3 working days (target: 5)
+- **Budget:** None — self-initiated for learning purposes
 
-* **Timeline: Needs to built within 5 working days from the request**
-* **Budget: None**
+### 🗣️ Elevator Pitch
+Grab Fruits! is a playful platformer where users try to collect as many fruits as possible — while avoiding falling spiders.  
+It’s a simple concept, but behind it lies a carefully structured **UX-driven interaction loop**: intuitive input, rapid feedback, minimal friction.
 
-## 🗣️ Elevator Pitch
+---
 
-This is a simple game. A player is expected to collect as many fruits as possible without touching spiders.
+## 🍏 What is Grab Fruits?
 
-## 💵 Monetization
+Grab Fruits! is a simple, intuitive game — a player collects fruits and avoids spiders.  
+The goal? Get the highest score possible and make it into the top 5 leaderboard.  
+This game is built with **Phaser 3** and designed for **short, replayable sessions** that are easy to learn but rewarding to master.
 
-I create this game only to learn how to build a web application with JavaScript and Phaser 3. Monetization is not under concern for now.
+---
 
-# Story
+## 🧵 Story
 
-The main character lives in a small town. In this town, there is a big mountain and a big tree. She loves taking fruits that are fallen down from the biggest tree in this town.
+A young girl lives in a peaceful town. Each day, she visits the mountain to collect fruits that fall from a sacred tree.  
+But lately, spiders have begun falling with the fruits. She must collect what she can — while dodging danger.
 
-# Gameplay
+---
 
-In this game, she takes apples, bananas, and pineapple that falls from the tree. Sometimes, spiders fall along with fruits. She hates spiders, so a player needs to avoid touching spiders. If a player touches a spider, the game will be over.
+## 🕹 Gameplay Summary
 
-# Core Game Mechanic
+### Core Flow:
+1. Start screen → Username input  
+2. Select difficulty (Easy / Normal / Hard)  
+3. Game starts  
+4. Player collects fruits while avoiding spiders  
+5. On game over:  
+   - View top scorers  
+   - Return to title  
+   - Restart current mode  
 
-## #1 Build platform game with Phaser3 Library
+### UX Design Points:
+- No tutorial required: players understand the game through interaction itself
+- All buttons and transitions are labeled clearly with feedback
+- Score view and restart options are **intuitively placed** after game ends
 
-In this project, the developer implements Phaser 3 Library to build the platform game
+---
 
-## #2 Apply actions like running, jumping to the main character
+## 📏 How to Play
 
-The main character is able to run, jump and double jump in the field
+1. Click the **“Click to Start”** button  
+2. Enter a **username** (used to show in leaderboard if scoring in top 5)  
+3. Select a **difficulty mode**:
+   - **Easy** – slow fruits and spiders  
+   - **Normal** – balanced  
+   - **Hard** – fast and challenging  
+4. Start collecting fruits (avoid spiders!)  
+5. On Game Over:
+   - Click **Score** to see top 5 leaderboard  
+   - Click **TOP** to restart with new user or mode  
+   - Click **Restart** to play again in same mode  
+6. In Score view:
+   - See usernames + scores of top 5 players  
+   - Same options as above
 
-## #3 Scoring system using API
+---
 
-Collect username and set it with their scores to the API.
-Show the top 5 scorers' name and their scores in the score view.
+## 🎯 Game Rules
 
-# Game elements
+- 🍎 Collecting a fruit: **+70 points**  
+- 🕷 Touching a spider: **game over**  
+- 🎮 Controls:  
+  - ← Move Left  
+  - → Move Right  
+  - ↑ Jump  
+  - ↑ (again mid-air) = **Double Jump**
 
-## 👤 Characters
+---
 
-* A girl (the main character)
-* Spiders (enemy)
+## 🎮 Core Mechanics
 
-## 🏆️ missions & scores
+1. **Platforming**  
+   - Built with [Phaser 3](https://phaser.io/phaser3)  
+   - Movement: run, jump, double jump
 
-* The mission is to grab as many fruits as possible without touching a spider
-* If the main character touches a fruit,  a player will get 70 points for a fruit
-* In this score view, the top 5 scorers show
-* A player can choose the easy, normal, or hard mode that has different speed of showing enemies and fruits
+2. **Scoring System**  
+   - Score increases by 70 per fruit  
+   - API saves scores tied to username  
+   - Top 5 displayed in leaderboard
 
-## 📦️ Objects
+3. **Difficulty Modes**  
+   - Easy / Normal / Hard  
+   - Vary speed of fruit and spider appearance
 
-* Fruits: apples, bananas, pineapples
-* A big tree with some fruits
-* Platforms: there are several small blocks that the main character can jump on
-* Background images: In the background, there are green grasses, trees, and a mountain. Parallax design is applied to them
+4. **Clear Game States**  
+   - Start → In-Game → Game Over → Score View
 
-# Assets
+---
 
-## 🎨 Art
+## 🧩 Game Elements
 
-* Illustrations for the main character, spiders, fruits: use free stock illustrations
-* Background images: some of them are used free stock materials, and others are created by the designer 
+### 👤 Characters
+- Player: Girl who collects fruits  
+- Enemy: Spiders
 
-## 🔊 Sound
+### 📦 Objects
+- Fruits: Apples, Bananas, Pineapples  
+- Platforms: Blocks to jump on  
+- Background: Parallax layers — trees, grass, mountains
 
-* Click sounds, back music:  use free stock materials
+---
 
-## 🏃‍ Animation
+## 🎨 Assets
 
-* The main character: apply animations for its idle, run, and jump
+### Art
+- Characters & fruits: free stock assets  
+- Background: blended stock + original edits
+
+### Animation
+- Player idle / run / jump  
+- Frame-controlled in Phaser timeline
+
+### Sound
+- BGM + click effects: Mixkit, YouTube Audio
+
+---
+
+## 🔁 Replayability
+
+| Mode   | Fruit Speed | Spider Speed | Ideal For            |
+|--------|-------------|--------------|----------------------|
+| Easy   | Slow        | Very slow    | Beginners            |
+| Normal | Medium      | Medium       | Balanced play        |
+| Hard   | Fast        | Fast         | Quick reflex players |
+
+- Session time: ~30s–2 min  
+- Easy to retry, start over, or view results
+
+---
+
+## 🔬 UX Learnings & Feedback
+
+- 🧪 User testing with casual players showed:
+  - "Double jump" added joy & control
+  - Restart / score view was easy to use
+  - Players understood game without needing instructions
+
+---
+
+## 🔗 Links
+
+- 🔗 [Live Demo](https://grab-fruits-yocosaka.netlify.app)
+- 🔗 [GitHub Repo](https://github.com/yoko-vicky/Grab-Fruits)
+- 🔗 [README](./README.md)
+
+---
