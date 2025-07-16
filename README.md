@@ -54,8 +54,8 @@ Frontend Developer × UX Thinker
 
 - GitHub: [yoko-vicky](https://github.com/yoko-vicky)
 - LinkedIn: [Yoko Saka](https://www.linkedin.com/in/yoko-vicky/)
-- Portfolio: [View Portfolio](https://abiding-snap-e4c.notion.site/Yoko-UX-Informed-Frontend-Development-Structuring-Portfolio-1cb994322fd580deab65d69fbfa3ddba)
-
+- Portfolio: [View My Work](https://www.yokoworks.dev/)
+- 
 ---
 
 ## 🤝 Contributing
